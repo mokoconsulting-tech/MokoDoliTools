@@ -1,0 +1,57 @@
+# Translation file
+
+#
+# Generic
+#
+
+# Module label 'Name'
+Name = MokoCRM
+# Module description 'Desc'
+Desc = MokoCRM is an enhanced module for Dolibarr ERP/CRM developed by Moko Consulting.
+DescLong = MokoCRM is an enhanced module for Dolibarr ERP/CRM developed by Moko Consulting. It upgrades Dolibarr’s native CRM capabilities with modern UI elements, internal admin tools, and usability enhancements — all with zero configuration required.
+
+
+#
+# Admin page
+#
+Settings = Settings
+Secure = Secure
+Repair = Repair
+Dbadmin = Database Admin
+
+#
+# Repair Tool
+#
+RepairArea-Warning = Links will open in new window.
+RepairArea-Test = Test Area
+RepairArea-Run = Run Area
+RepairArea-RunWarning = Click the following links may change the database or documents folder.
+
+#
+# About page
+#
+MokoCRMAbout = About MokoCRM
+MokoCRMAboutPage = MokoCRM about page
+
+#
+# Secure Tool
+#
+SecurityProblem            = Security issue detected
+ProblemFix                 = Security issue resolved
+ConfFileHasGoodPermissions = The conf.php file has the correct permissions to prevent security issues.
+ConfFileSetPermissions     = The conf.php file permissions have been edited
+InstallLockFileCreated     = The install.lock file has been created
+NoSecurityProblem          = There are no security issues
+RepairSecurityProblem      = Fix security issues
+SetMyDolibarrInProd        = Set my Dolibarr to production mode
+SetMyDolibarrInDraft       = Set my Dolibarr to development mode
+MyDolibarrIsInProd         = My Dolibarr is in production mode
+SuccessfullyChangeProdMod  = Dolibarr's production mode has been successfully changed
+CouldNotSetProd            = An error occurred while trying to switch to production mode
+FilePerms                  = File permissions
+YouAreRunningOnWindows     = Your server is running on Windows. Permissions were modified, but you should consider migrating to a Unix/Linux server.
+ConfirmRepairSecurity=Confirm Security Repair
+ConfirmRepairSecurityMessage=Are you sure you want to change the permissions of the config file and write the install.lock?
+
+ConfirmToggleProd=Switch Production Mode
+ConfirmToggleProdMessage=Do you really want to toggle Dolibarr production mode?
