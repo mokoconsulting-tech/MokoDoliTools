@@ -116,6 +116,73 @@ $tmpmodule = new modMokoCRM($db);
 
 print $tmpmodule->getDescLong();
 
+$dir = DOL_DOCUMENT_ROOT . '/custom/mokocrm';
+$target = 'changelog.md';
+$filepath = null;
+
+if (is_dir($dir)) {
+    foreach (new DirectoryIterator($dir) as $fi) {
+        if ($fi->isFile() && strcasecmp($fi->getFilename(), $target) === 0) {
+            $filepath = $fi->getPathname();
+            break;
+        }
+    }
+}
+
+if (!$filepath) {
+    print '<div class="error">Changelog file not found in: ' . htmlspecialchars($dir, ENT_QUOTES, 'UTF-8') . '</div>';
+    exit;
+}
+
+// Read markdown file
+$markdown = @file_get_contents($filepath);
+if ($markdown === false) {
+    print '<div class="error">Unable to read: ' . htmlspecialchars($filepath, ENT_QUOTES, 'UTF-8') . '</div>';
+    exit;
+}
+
+// Parse Markdown into HTML (prefer Dolibarr helper if available; fallback to Parsedown in safe mode)
+if (!function_exists('dol_md')) {
+    $parsedownPath = DOL_DOCUMENT_ROOT . '/includes/parsedown/Parsedown.php';
+    if (!file_exists($parsedownPath)) {
+        print '<div class="error">Markdown parser not found at: ' . htmlspecialchars($parsedownPath, ENT_QUOTES, 'UTF-8') . '</div>';
+        exit;
+    }
+    require_once $parsedownPath;
+    $parser = new Parsedown();
+    if (method_exists($parser, 'setSafeMode')) {
+        $parser->setSafeMode(true); // prevent raw HTML injection
+    }
+    $html = $parser->text($markdown);
+} else {
+    $html = dol_md($markdown);
+}
+
+// Output HTML
+if (trim((string) $html) === '') {
+    print '<div class="warning">Changelog is empty.</div>';
+} else {
+    print '<div id="mokocrm-changelog" class="changelog markdown-body">';
+    print $html;
+    print '</div>';
+
+    // Make external links open in a new tab (UX + safety)
+    ?>
+    <script>
+    (function () {
+        var c = document.getElementById('mokocrm-changelog');
+        if (!c) return;
+        c.querySelectorAll('a[href]').forEach(function (a) {
+            var href = a.getAttribute('href') || '';
+            if (/^https?:\/\//i.test(href)) {
+                a.setAttribute('target', '_blank');
+                a.setAttribute('rel', 'noopener noreferrer');
+            }
+        });
+    })();
+    </script>
+    <?php
+}
 
 // Page end
 print dol_get_fiche_end();

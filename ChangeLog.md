@@ -1,4 +1,4 @@
-# CHANGELOG MODULE MOKODOLIMODS FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
+# CHANGELOG MODULE MokoCRM FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
 ## 2.4
 - Changed Fontawesome 6 method from JS to CSS for compatiability
