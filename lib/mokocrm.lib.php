@@ -1,104 +1,73 @@
 <?php
-/* Copyright (C) 2025		Jonathan Miller				<jmiller@mokoconsulting.tech>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
+/*
+Copyright (C) 2025 Moko Consulting <hello@mokoconsulting.tech>
+This file is part of a Moko Consulting project.
+SPDX-License-Identifier: GPL-3.0-or-later
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, see https://www.gnu.org/licenses/ .
+========================================================================
+FILE INFORMATION
+INGROUP: MokoCRM
+FILE: lib/mokocrm.lib.php
+VERSION: 02.05.00
+BRIEF: Library with common functions for MokoCRM (admin header tabs).
+PATH: htdocs/custom/mokocrm/lib/mokocrm.lib.php
+NOTE:
+VARIABLES:
+========================================================================
+*/
 
 /**
- * \file    mokocrm/lib/mokocrm.lib.php
- * \ingroup mokocrm
- * \brief   Library files with common functions for MokoCRM
- */
-
-/**
- * Prepare admin pages header
+ * Prepare admin pages header.
  *
- * @return array<array{string,string,string}>
+ * @return array<int, array{0:string,1:string,2:string}>
  */
 function mokocrmAdminPrepareHead()
 {
 	global $langs, $conf;
 
-	// global $db;
-	// $extrafields = new ExtraFields($db);
-	// $extrafields->fetch_name_optionals_label('myobject');
-
-	$langs->load("mokocrm@mokocrm");
+	$langs->load('mokocrm@mokocrm');
 
 	$h = 0;
 	$head = array();
 
-	$head[$h][0] = dol_buildpath("/mokocrm/admin/setup.php", 1);
-	$head[$h][1] = $langs->trans("Settings");
+	// Settings
+	$head[$h][0] = dol_buildpath('/mokocrm/admin/setup.php', 1);
+	$head[$h][1] = $langs->trans('MOKOCRM_Settings');
 	$head[$h][2] = 'settings';
 	$h++;
 
-	/*
-	$head[$h][0] = dol_buildpath("/mokocrm/admin/myobject_extrafields.php", 1);
-	$head[$h][1] = $langs->trans("ExtraFields");
-	$nbExtrafields = is_countable($extrafields->attributes['myobject']['label']) ? count($extrafields->attributes['myobject']['label']) : 0;
-	if ($nbExtrafields > 0) {
-		$head[$h][1] .= '<span class="badge marginleftonlyshort">' . $nbExtrafields . '</span>';
-	}
-	$head[$h][2] = 'myobject_extrafields';
+	// Tools (Secure & Repair utilities live here)
+	$head[$h][0] = dol_buildpath('/mokocrm/admin/tools.php', 1);
+	$head[$h][1] = $langs->trans('MOKOCRM_Tools');
+	$head[$h][2] = 'tools';
 	$h++;
 
-	$head[$h][0] = dol_buildpath("/mokocrm/admin/myobjectline_extrafields.php", 1);
-	$head[$h][1] = $langs->trans("ExtraFieldsLines");
-	$nbExtrafields = is_countable($extrafields->attributes['myobjectline']['label']) ? count($extrafields->attributes['myobject']['label']) : 0;
-	if ($nbExtrafields > 0) {
-		$head[$h][1] .= '<span class="badge marginleftonlyshort">' . $nbExtrafields . '</span>';
-	}
-	$head[$h][2] = 'myobject_extrafieldsline';
-	$h++;
-	*/
-
-	$head[$h][0] = dol_buildpath("/mokocrm/admin/about.php", 1);
-	$head[$h][1] = $langs->trans("About");
-	$head[$h][2] = 'about';
-	$h++;
-
-	$head[$h][0] = dol_buildpath("/mokocrm/admin/changelog.php", 1);
-	$head[$h][1] = $langs->trans("ChangeLog");
-	$head[$h][2] = 'changelog';
-	$h++;
-
-	$head[$h][0] = dol_buildpath("/mokocrm/admin/secure.php", 1);
-	$head[$h][1] = $langs->trans("Secure");
-	$head[$h][2] = 'secure';
-	$h++;
-
-	$head[$h][0] = dol_buildpath("/mokocrm/admin/dbadmin.php", 1);
-	$head[$h][1] = $langs->trans("Dbadmin");
+	// DB Admin (Adminer wrapper)
+	$head[$h][0] = dol_buildpath('/mokocrm/admin/dbadmin.php', 1);
+	$head[$h][1] = $langs->trans('MOKOCRM_DBAdmin');
 	$head[$h][2] = 'dbadmin';
 	$h++;
 
-	$head[$h][0] = dol_buildpath("/mokocrm/admin/repair.php", 1);
-	$head[$h][1] = $langs->trans("Repair");
-	$head[$h][2] = 'repair';
+	// About (includes changelog)
+	$head[$h][0] = dol_buildpath('/mokocrm/admin/about.php', 1);
+	$head[$h][1] = $langs->trans('MOKOCRM_About');
+	$head[$h][2] = 'about';
 	$h++;
 
-	// Show more tabs from modules
-	// Entries must be declared in modules descriptor with line
-	//$this->tabs = array(
-	//	'entity:+tabname:Title:@mokocrm:/mokocrm/mypage.php?id=__ID__'
-	//); // to add new tab
-	//$this->tabs = array(
-	//	'entity:-tabname:Title:@mokocrm:/mokocrm/mypage.php?id=__ID__'
-	//); // to remove a tab
+	// Extend with module-defined tabs
 	complete_head_from_modules($conf, $langs, null, $head, $h, 'mokocrm@mokocrm');
-
 	complete_head_from_modules($conf, $langs, null, $head, $h, 'mokocrm@mokocrm', 'remove');
 
 	return $head;
