@@ -20,7 +20,7 @@ along with this program. If not, see https://www.gnu.org/licenses/ .
 FILE INFORMATION
 INGROUP: MokoCRM
 FILE: mokocrm.css.php
-VERSION: 02.05.00
+VERSION: 02.05.01
 BRIEF: Dynamic CSS for MokoCRM UI tokens, utilities, icons, and admin tooling views
 PATH: htdocs/custom/mokocrm/mokocrm.css.php
 NOTE: Serves CSS with cache headers; colors can be overridden via Dolibarr conf constants
@@ -92,7 +92,7 @@ $logoUrl = (defined('DOL_URL_ROOT') ? DOL_URL_ROOT : '') . '/custom/mokocrm/img/
 
 // Build CSS content --------------------------------------------------------------------------------
 $css = <<<CSS
-/* MokoCRM dynamic CSS (v02.05.00) */
+/* MokoCRM dynamic CSS (v02.05.01) */
 :root {--mokocrm-primary: {$primary};--mokocrm-accent: {$accent};--mokocrm-neutral: {$neutral};--mokocrm-radius: {$radius};}
 @media (prefers-color-scheme: dark){:root{--mokocrm-neutral:#adb5bd;}}
 

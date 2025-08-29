@@ -20,7 +20,7 @@ along with this program. If not, see https://www.gnu.org/licenses/ .
 FILE INFORMATION
 INGROUP: MokoCRM
 FILE: helplink-rewriter.js.php
-VERSION: 02.05.00
+VERSION: 02.05.01
 BRIEF: Rewrites Dolibarr wiki links to a custom search URL, controlled by settings.
 PATH: htdocs/custom/mokocrm/js/helplink-rewriter.js.php
 NOTE: Uses MOKOCRM_HELPLINK (enable) and MOKOCRM_HELPLINK_URL (base).

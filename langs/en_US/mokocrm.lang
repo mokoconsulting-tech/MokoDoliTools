@@ -20,7 +20,7 @@
 # DEFGROUP: Dolibarr
 # INGROUP: MokoCRM
 # FILE: mokocrm.lang
-# VERSION: 2.5.0
+# VERSION: 2.5.1
 # BRIEF: English (en_US) language strings for the MokoCRM module (Dolibarr).
 # PATH: htdocs/custom/mokocrm/langs/en_US/mokocrm.lang
 # =========================================================================
@@ -48,7 +48,7 @@ MOKOCRM_Changelog=Changelog
 MOKOCRM_ChangelogTitle=Module Changelog
 MOKOCRM_Tools=Tools
 MOKOCRM_ToolsTitle=Utilities & Tools
-MOKOCRM_DBAdmin=DB Admin
+MOKOCRM_DBAdmin=Database
 MOKOCRM_DBAdminTitle=Database Administration
 
 # ===== Buttons / Common UI =====
@@ -208,6 +208,7 @@ MOKOCRM_DBAdmin_RowCount=Row count
 MOKOCRM_DBAdmin_SizeOnDisk=Size on disk
 MOKOCRM_DBAdmin_Confirm=Are you sure? Back up before continuing.
 MOKOCRM_DBAdmin_UnsupportedDriver=This driver is not supported for this operation.
+MOKOCRM_DBADMIN_Warning=This tool makes direct edits to the database.<br><br>CHANGES ARE NOT REVERSIBLE!
 
 # ===== About =====
 MOKOCRM_About_Version=Version
@@ -248,9 +249,7 @@ MOKOCRM_Status=Status
 MOKOCRM_Duration=Duration
 MOKOCRM_Elapsed=Elapsed
 MOKOCRM_Details=Details
-
 MOKOCRM_About_LongDesc=This page summarizes the purpose of the MokoCRM module, licensing, authorship, and project links.
-
 MOKOCRM_Changelog_Desc=View recent version history and changes.
-
 MOKOCRM_Settings=Settings
+IUnderstand=I Understand

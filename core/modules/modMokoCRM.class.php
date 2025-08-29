@@ -23,7 +23,7 @@ FILE INFORMATION
  DEFGROUP:   Dolibarr
  INGROUP:    MokoCRM
  FILE:       core/modules/modMokoCRM.class.php
- VERSION:    02.05.00
+ VERSION:    02.05.01
  BRIEF:      Module descriptor for the MokoCRM Dolibarr module
  PATH:       htdocs/custom/mokocrm/core/modules/modMokoCRM.class.php
  VARIABLES:
@@ -92,7 +92,7 @@ class modMokoCRM extends DolibarrModules
 		$this->editor_squarred_logo = 'logo.png@mokocrm'; // img/logo.png in module
 
 		// --- Version & state -----------------------------------------------
-		$this->version    = '02.05.00';
+		$this->version    = '02.05.01';
 		$this->const_name = 'MAIN_MODULE_' . strtoupper($this->name);  // e.g., MAIN_MODULE_MOKOCRM
 
 		// --- Visual identity -----------------------------------------------

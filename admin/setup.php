@@ -20,7 +20,7 @@ along with this program. If not, see https://www.gnu.org/licenses/ .
 FILE INFORMATION
 INGROUP: MokoCRM
 FILE: mokocrm/admin/setup.php
-VERSION: 02.05.000
+VERSION: 02.05.010
 BRIEF: Setup page for the MokoCRM module (help link settings only; URL hidden unless enabled).
 PATH: htdocs/custom/mokocrm/admin/setup.php
 NOTE: GeoIP settings are intentionally not loaded or shown here; managed elsewhere.

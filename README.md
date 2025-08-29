@@ -19,7 +19,7 @@ along with this program. If not, see https://www.gnu.org/licenses/ .
 FILE INFORMATION
 INGROUP: MokoCRM
 FILE: README.md
-VERSION: 02.05.00
+VERSION: 02.05.01
 BRIEF: Readme and upgrade notes for the MokoCRM Dolibarr module
 PATH: htdocs/custom/mokocrm/README.md
 NOTE: Updated to reflect project sync notes as of 2025-08-28.

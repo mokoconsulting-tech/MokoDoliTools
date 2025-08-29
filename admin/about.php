@@ -20,7 +20,7 @@ along with this program. If not, see https://www.gnu.org/licenses/ .
 FILE INFORMATION
 INGROUP:    MokoCRM
 FILE:       admin/about.php
-VERSION:    02.05.00
+VERSION:    02.05.01
 BRIEF:      About & Changelog page for the MokoCRM module.
 PATH:       htdocs/custom/mokocrm/admin/about.php
 NOTE:       Finds ChangeLog.md case-insensitively in the module root and renders it as Markdown.
