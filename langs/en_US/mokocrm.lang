@@ -35,6 +35,10 @@ MOKOCRM_ModuleLongDesc=MokoCRM extends Dolibarr with curated defaults, a lightwe
 MOKOCRM_Area=MokoCRM
 MOKOCRM_Menu=MokoCRM
 
+# ===== Menus =====
+MenuMokoCRMDbadmin=Database Admin
+MenuMokoCRMTools=Tools
+
 # ===== Admin / Setup =====
 MOKOCRM_Setup=Setup
 MOKOCRM_SetupTitle=Module Setup
