@@ -20,7 +20,7 @@ along with this program. If not, see https://www.gnu.org/licenses/ .
 FILE INFORMATION
 INGROUP: MokoCRM
 FILE: tools.php
-VERSION: 02.05.010
+VERSION: 02.05.02
 BRIEF: Admin tools for MokoCRM with modal links, quick filter, accordion UI, and a Security Advisor.
 PATH: htdocs/custom/mokocrm/admin/tools.php
 NOTE: Disallowed tools are hidden when install.lock is present (unless upgrade.unlock exists). Uses MOKOCRM_* language keys throughout.

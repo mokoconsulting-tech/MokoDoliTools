@@ -20,7 +20,7 @@ along with this program. If not, see https://www.gnu.org/licenses/ .
 FILE INFORMATION
 INGROUP: MokoCRM
 FILE: lib/mokocrm.lib.php
-VERSION: 02.05.01
+VERSION: 02.05.02
 BRIEF: Library with common functions for MokoCRM (admin header tabs).
 PATH: htdocs/custom/mokocrm/lib/mokocrm.lib.php
 NOTE:
