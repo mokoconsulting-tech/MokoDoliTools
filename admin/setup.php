@@ -31,16 +31,16 @@ VARIABLES: MOKODOLITOOLS_HELPLINK (default yes), MOKODOLITOOLS_HELPLINK_URL
 // Load Dolibarr environment
 $res = 0;
 if (!$res && !empty($_SERVER['CONTEXT_DOCUMENT_ROOT'])) {
-    $res = @include $_SERVER['CONTEXT_DOCUMENT_ROOT'].'/main.inc.php';
+	$res = @include $_SERVER['CONTEXT_DOCUMENT_ROOT'].'/main.inc.php';
 }
 if (!$res && file_exists('../../main.inc.php')) {
-    $res = @include '../../main.inc.php';
+	$res = @include '../../main.inc.php';
 }
 if (!$res && file_exists('../../../main.inc.php')) {
-    $res = @include '../../../main.inc.php';
+	$res = @include '../../../main.inc.php';
 }
 if (!$res) {
-    die('Include of main fails');
+	die('Include of main fails');
 }
 
 // Libraries
@@ -67,27 +67,27 @@ require_once '../lib/mokodolitools.lib.php';
  */
 function mokodolitools_verify_csrf($token)
 {
-    if (function_exists('dol_verifyToken')) {
-        return dol_verifyToken($token);
-    }
-    if (function_exists('checkToken')) {
-        return checkToken($token);
-    }
-    if (empty($token)) return false;
-    if (session_status() !== PHP_SESSION_ACTIVE) return false;
+	if (function_exists('dol_verifyToken')) {
+		return dol_verifyToken($token);
+	}
+	if (function_exists('checkToken')) {
+		return checkToken($token);
+	}
+	if (empty($token)) return false;
+	if (session_status() !== PHP_SESSION_ACTIVE) return false;
 
-    // Common Dolibarr session keys set by newToken()
-    $candidates = array('newtoken', 'token');
-    foreach ($candidates as $key) {
-        if (!empty($_SESSION[$key])) {
-            if (function_exists('hash_equals')) {
-                if (hash_equals((string) $_SESSION[$key], (string) $token)) return true;
-            } else {
-                if ((string) $_SESSION[$key] === (string) $token) return true;
-            }
-        }
-    }
-    return false;
+	// Common Dolibarr session keys set by newToken()
+	$candidates = array('newtoken', 'token');
+	foreach ($candidates as $key) {
+		if (!empty($_SESSION[$key])) {
+			if (function_exists('hash_equals')) {
+				if (hash_equals((string) $_SESSION[$key], (string) $token)) return true;
+			} else {
+				if ((string) $_SESSION[$key] === (string) $token) return true;
+			}
+		}
+	}
+	return false;
 }
 
 // ----------------------------------------------------------------------
@@ -100,7 +100,7 @@ $hookmanager->initHooks(array('mokodolitoolssetup', 'globalsetup'));
 
 // Access control
 if (empty($user->admin)) {
-    accessforbidden();
+	accessforbidden();
 }
 
 // Parameters
@@ -117,40 +117,40 @@ $entityForSave = 0; // apply to all entities
 
 // Save settings (Help Link only)
 if ($action === 'save' && !empty($user->admin)) {
-    if (!mokodolitools_verify_csrf($token)) {
-        accessforbidden('Bad token');
-    }
+	if (!mokodolitools_verify_csrf($token)) {
+		accessforbidden('Bad token');
+	}
 
-    // Coerce values to strings to avoid ErrorBadValueForParamNotAString
-    $valHelpLink    = GETPOST('MOKODOLITOOLS_HELPLINK', 'int') ? '1' : '0'; // '1' or '0'
-    $valHelpLinkUrl = (string) (GETPOST('MOKODOLITOOLS_HELPLINK_URL', 'restricthtml') ?? '');
+	// Coerce values to strings to avoid ErrorBadValueForParamNotAString
+	$valHelpLink    = GETPOST('MOKODOLITOOLS_HELPLINK', 'int') ? '1' : '0'; // '1' or '0'
+	$valHelpLinkUrl = (string) (GETPOST('MOKODOLITOOLS_HELPLINK_URL', 'restricthtml') ?? '');
 
-    if ($valHelpLinkUrl === '') {
-        $valHelpLinkUrl = 'https://mokoconsulting.tech/search?q=CRM%3A%20';
-    }
+	if ($valHelpLinkUrl === '') {
+		$valHelpLinkUrl = 'https://mokoconsulting.tech/search?q=CRM%3A%20';
+	}
 
-    $error = 0;
-    $db->begin();
+	$error = 0;
+	$db->begin();
 
-    // Save toggle (entity=0)
-    if (!dolibarr_set_const($db, 'MOKODOLITOOLS_HELPLINK', $valHelpLink, 'yesno', 0, '', $entityForSave)) $error++;
+	// Save toggle (entity=0)
+	if (!dolibarr_set_const($db, 'MOKODOLITOOLS_HELPLINK', $valHelpLink, 'yesno', 0, '', $entityForSave)) $error++;
 
-    // Only save/update the URL if the feature is enabled; otherwise preserve existing value
-    if ($valHelpLink === '1') {
-        if (!dolibarr_set_const($db, 'MOKODOLITOOLS_HELPLINK_URL', $valHelpLinkUrl, 'chaine', 0, '', $entityForSave)) $error++;
-    }
+	// Only save/update the URL if the feature is enabled; otherwise preserve existing value
+	if ($valHelpLink === '1') {
+		if (!dolibarr_set_const($db, 'MOKODOLITOOLS_HELPLINK_URL', $valHelpLinkUrl, 'chaine', 0, '', $entityForSave)) $error++;
+	}
 
-    if (!$error) {
-        $db->commit();
-        setEventMessages($langs->trans('SetupSaved'), null, 'mesgs');
-    } else {
-        $db->rollback();
-        setEventMessages($langs->trans('ErrorFailedToSave'), null, 'errors');
-    }
+	if (!$error) {
+		$db->commit();
+		setEventMessages($langs->trans('SetupSaved'), null, 'mesgs');
+	} else {
+		$db->rollback();
+		setEventMessages($langs->trans('ErrorFailedToSave'), null, 'errors');
+	}
 
-    // Avoid resubmission
-    header('Location: '.$_SERVER['PHP_SELF'].(empty($backtopage) ? '' : '?backtopage='.urlencode($backtopage)));
-    exit;
+	// Avoid resubmission
+	header('Location: '.$_SERVER['PHP_SELF'].(empty($backtopage) ? '' : '?backtopage='.urlencode($backtopage)));
+	exit;
 }
 
 /*
@@ -186,7 +186,7 @@ print '<form action="'.dol_escape_htmltag($_SERVER['PHP_SELF']).'" method="post"
 print '<input type="hidden" name="token" value="'.newToken().'">';
 print '<input type="hidden" name="action" value="save">';
 if (!empty($backtopage)) {
-    print '<input type="hidden" name="backtopage" value="'.dol_escape_htmltag($backtopage).'">';
+	print '<input type="hidden" name="backtopage" value="'.dol_escape_htmltag($backtopage).'">';
 }
 
 print '<div class="div-table-responsive-no-min">';
@@ -222,7 +222,7 @@ $parameters = array();
 $object = new stdClass();
 $reshook = $hookmanager->executeHooks('formMokoDoliToolsSetup', $parameters, $object, $action);
 if ($reshook < 0) {
-    setEventMessages($hookmanager->error, $hookmanager->errors, 'errors');
+	setEventMessages($hookmanager->error, $hookmanager->errors, 'errors');
 }
 
 // Buttons
@@ -235,17 +235,17 @@ print '</form>';
 // Client-side dependency: show/hide URL row based on toggle
 print '<script>
 (function(){
-    function toggleHelpUrlRow(){
-        var sel = document.querySelector(\'select[name="MOKODOLITOOLS_HELPLINK"]\');
-        var row = document.getElementById("row_MOKODOLITOOLS_HELPLINK_URL");
-        if (!sel || !row) return;
-        row.style.display = String(sel.value) === "1" ? "" : "none";
-    }
-    document.addEventListener("DOMContentLoaded", function(){
-        toggleHelpUrlRow();
-        var sel = document.querySelector(\'select[name="MOKODOLITOOLS_HELPLINK"]\');
-        if (sel) sel.addEventListener("change", toggleHelpUrlRow);
-    });
+	function toggleHelpUrlRow(){
+		var sel = document.querySelector(\'select[name="MOKODOLITOOLS_HELPLINK"]\');
+		var row = document.getElementById("row_MOKODOLITOOLS_HELPLINK_URL");
+		if (!sel || !row) return;
+		row.style.display = String(sel.value) === "1" ? "" : "none";
+	}
+	document.addEventListener("DOMContentLoaded", function(){
+		toggleHelpUrlRow();
+		var sel = document.querySelector(\'select[name="MOKODOLITOOLS_HELPLINK"]\');
+		if (sel) sel.addEventListener("change", toggleHelpUrlRow);
+	});
 })();
 </script>';
 
