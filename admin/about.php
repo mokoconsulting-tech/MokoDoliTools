@@ -18,11 +18,11 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see https://www.gnu.org/licenses/ .
 ========================================================================
 FILE INFORMATION
-INGROUP:    MokoCRM
+INGROUP:    MokoDoliTools
 FILE:       admin/about.php
 VERSION:    02.05.02
-BRIEF:      About & Changelog page for the MokoCRM module.
-PATH:       htdocs/custom/mokocrm/admin/about.php
+BRIEF:      About & Changelog page for the MokoDoliTools module.
+PATH:       htdocs/custom/mokodolitools/admin/about.php
 NOTE:       Finds ChangeLog.md case-insensitively in the module root and renders it as Markdown.
 VARIABLES:
 ========================================================================
@@ -63,7 +63,7 @@ if (!$res) {
 // Libraries
 require_once DOL_DOCUMENT_ROOT . '/core/lib/admin.lib.php';
 require_once DOL_DOCUMENT_ROOT . '/core/lib/functions2.lib.php';
-require_once '../lib/mokocrm.lib.php';
+require_once '../lib/mokodolitools.lib.php';
 
 /**
  * @var Conf        $conf
@@ -74,7 +74,7 @@ require_once '../lib/mokocrm.lib.php';
  */
 
 // Translations
-$langs->loadLangs(array('errors', 'admin', 'mokocrm@mokocrm'));
+$langs->loadLangs(array('errors', 'admin', 'mokodolitools@mokodolitools'));
 
 // Access control
 if (!$user->admin) {
@@ -96,9 +96,9 @@ $backtopage = GETPOST('backtopage', 'alpha');
 $form = new Form($db);
 
 $help_url = '';
-$titlekey = 'MOKOCRM_About'; // Use lang key (add in langs/en_US/mokocrm.lang if missing)
+$titlekey = 'MOKODOLITOOLS_About'; // Use lang key (add in langs/en_US/mokodolitools.lang if missing)
 
-llxHeader('', $langs->trans($titlekey), $help_url, '', 0, 0, '', '', '', 'mod-mokocrm page-admin_about');
+llxHeader('', $langs->trans($titlekey), $help_url, '', 0, 0, '', '', '', 'mod-mokodolitools page-admin_about');
 
 dol_htmloutput_events(); // render queued messages if any
 
@@ -107,20 +107,20 @@ $linkback = '<a href="' . ($backtopage ? $backtopage : DOL_URL_ROOT . '/admin/mo
 print load_fiche_titre($langs->trans($titlekey), $linkback, 'title_setup');
 
 // Configuration header
-$head = mokocrmAdminPrepareHead();
-print dol_get_fiche_head($head, 'about', $langs->trans($titlekey), 0, 'mokocrm@mokocrm');
+$head = mokodolitoolsAdminPrepareHead();
+print dol_get_fiche_head($head, 'about', $langs->trans($titlekey), 0, 'mokodolitools@mokodolitools');
 
 // Module long description
-if (!class_exists('modMokoCRM', false)) {
-	dol_include_once('/mokocrm/core/modules/modMokoCRM.class.php');
+if (!class_exists('modMokoDoliTools', false)) {
+	dol_include_once('/mokodolitools/core/modules/modMokoDoliTools.class.php');
 }
-if (class_exists('modMokoCRM', false)) {
-	$tmpmodule = new modMokoCRM($db);
+if (class_exists('modMokoDoliTools', false)) {
+	$tmpmodule = new modMokoDoliTools($db);
 	print $tmpmodule->getDescLong();
 }
 
 // Locate ChangeLog.md case-insensitively within the module root
-$dir = DOL_DOCUMENT_ROOT . '/custom/mokocrm';
+$dir = DOL_DOCUMENT_ROOT . '/custom/mokodolitools';
 $target = 'changelog.md';
 $filepath = null;
 
@@ -134,18 +134,18 @@ if (is_dir($dir)) {
 }
 
 if (!$filepath) {
-	setEventMessages($langs->trans('MOKOCRM_ChangelogNotFound', $dir), null, 'errors');
+	setEventMessages($langs->trans('MOKODOLITOOLS_ChangelogNotFound', $dir), null, 'errors');
 } else {
 	// Read markdown file
 	$markdown = @file_get_contents($filepath);
 	if ($markdown === false) {
-		setEventMessages($langs->trans('MOKOCRM_CannotReadFile', $filepath), null, 'errors');
+		setEventMessages($langs->trans('MOKODOLITOOLS_CannotReadFile', $filepath), null, 'errors');
 	} else {
 		// Parse Markdown into HTML (prefer Dolibarr helper if available; fallback to Parsedown in safe mode)
 		if (!function_exists('dol_md')) {
 			$parsedownPath = DOL_DOCUMENT_ROOT . '/includes/parsedown/Parsedown.php';
 			if (!file_exists($parsedownPath)) {
-				setEventMessages($langs->trans('MOKOCRM_MarkdownParserMissing', $parsedownPath), null, 'errors');
+				setEventMessages($langs->trans('MOKODOLITOOLS_MarkdownParserMissing', $parsedownPath), null, 'errors');
 			} else {
 				require_once $parsedownPath;
 				$parser = new Parsedown();
@@ -160,13 +160,13 @@ if (!$filepath) {
 
 		// Output HTML when available
 		if (!empty($html)) {
-			print '<div id="mokocrm-changelog" class="changelog markdown-body">' . $html . '</div>';
+			print '<div id="mokodolitools-changelog" class="changelog markdown-body">' . $html . '</div>';
 
 			// Make external links open in a new tab (UX + safety)
 			?>
 			<script>
 			(function () {
-				var c = document.getElementById('mokocrm-changelog');
+				var c = document.getElementById('mokodolitools-changelog');
 				if (!c) return;
 				c.querySelectorAll('a[href]').forEach(function (a) {
 					var href = a.getAttribute('href') || '';
@@ -179,7 +179,7 @@ if (!$filepath) {
 			</script>
 			<?php
 		} else {
-			setEventMessages($langs->trans('MOKOCRM_ChangelogEmpty'), null, 'warnings');
+			setEventMessages($langs->trans('MOKODOLITOOLS_ChangelogEmpty'), null, 'warnings');
 		}
 	}
 }

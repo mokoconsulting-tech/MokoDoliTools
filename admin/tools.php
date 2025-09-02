@@ -18,12 +18,12 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see https://www.gnu.org/licenses/ .
 ========================================================================
 FILE INFORMATION
-INGROUP: MokoCRM
+INGROUP: MokoDoliTools
 FILE: tools.php
 VERSION: 02.05.02
-BRIEF: Admin tools for MokoCRM with modal links, quick filter, accordion UI, and a Security Advisor.
-PATH: htdocs/custom/mokocrm/admin/tools.php
-NOTE: Disallowed tools are hidden when install.lock is present (unless upgrade.unlock exists). Uses MOKOCRM_* language keys throughout.
+BRIEF: Admin tools for MokoDoliTools with modal links, quick filter, accordion UI, and a Security Advisor.
+PATH: htdocs/custom/mokodolitools/admin/tools.php
+NOTE: Disallowed tools are hidden when install.lock is present (unless upgrade.unlock exists). Uses MOKODOLITOOLS_* language keys throughout.
 VARIABLES:
 ========================================================================
 */
@@ -47,7 +47,7 @@ if (!$res) { die('Include of main fails'); }
 
 require_once DOL_DOCUMENT_ROOT . '/core/class/html.form.class.php';
 require_once DOL_DOCUMENT_ROOT . '/core/lib/admin.lib.php';
-require_once '../lib/mokocrm.lib.php';
+require_once '../lib/mokodolitools.lib.php';
 
 /** @var Translate $langs */
 /** @var User $user */
@@ -55,25 +55,25 @@ require_once '../lib/mokocrm.lib.php';
 /** @var HookManager $hookmanager */
 /** @var Conf $conf */
 
-$langs->loadLangs(['admin', 'install', 'mokocrm@mokocrm']);
-$hookmanager->initHooks(['mokocrmsetup', 'globalsetup']);
+$langs->loadLangs(['admin', 'install', 'mokodolitools@mokodolitools']);
+$hookmanager->initHooks(['mokodolitoolssetup', 'globalsetup']);
 
 if (!$user->admin) { accessforbidden(); }
 
 $form  = new Form($db);
-$title = 'MOKOCRM_ToolsTitle';
-llxHeader('', $langs->trans($title), '', '', 0, 0, '', '', '', 'mod-mokocrm page-admin');
+$title = 'MOKODOLITOOLS_ToolsTitle';
+llxHeader('', $langs->trans($title), '', '', 0, 0, '', '', '', 'mod-mokodolitools page-admin');
 
 $linkback = '<a href="' . DOL_URL_ROOT . '/admin/modules.php?restore_lastsearch_values=1">' . $langs->trans('BackToModuleList') . '</a>';
 print load_fiche_titre($langs->trans($title), $linkback, 'title_setup');
 
-$head = mokocrmAdminPrepareHead();
+$head = mokodolitoolsAdminPrepareHead();
 print dol_get_fiche_head($head, 'tools', $langs->trans($title), -1);
 
 // -----------------------------------------------------------------------------
 // Security helpers
 // -----------------------------------------------------------------------------
-function mokocrm_find_conf_file() {
+function mokodolitools_find_conf_file() {
 	$candidates = array(
 		dirname(DOL_DOCUMENT_ROOT) . '/conf/conf.php',
 		DOL_DOCUMENT_ROOT . '/conf/conf.php',
@@ -84,29 +84,29 @@ function mokocrm_find_conf_file() {
 	}
 	return '';
 }
-function mokocrm_recommended_conf_perms() { return 0440; }
+function mokodolitools_recommended_conf_perms() { return 0440; }
 
 // -----------------------------------------------------------------------------
 // Data
 // -----------------------------------------------------------------------------
 $repairs = [
-	'standard'                         => 'MOKOCRM_Repair_Standard',
-	'clean_linked_elements'            => 'MOKOCRM_Repair_CleanLinkedElements',
-	'restore_thirdparties_logos'       => 'MOKOCRM_Repair_RestoreThirdPartyLogos',
-	'clean_menus'                      => 'MOKOCRM_Repair_CleanMenus',
-	'clean_orphelin_dir'               => 'MOKOCRM_Repair_CleanOrphanDirectories',
-	'clean_product_stock_batch'        => 'MOKOCRM_Repair_CleanProductStockBatch',
-	'set_empty_time_spent_amount'      => 'MOKOCRM_Repair_SetEmptyTimeSpentAmount',
-	'rebuild_product_thumbs'           => 'MOKOCRM_Repair_RebuildProductThumbs',
-	'force_disable_of_modules_not_found' => 'MOKOCRM_Repair_ForceDisableModulesNotFound',
-	'clean_perm_table'                 => 'MOKOCRM_Repair_CleanPermsTable',
-	'force_utf8_on_tables'             => 'MOKOCRM_Repair_ForceUTF8OnTables',
+	'standard'                         => 'MOKODOLITOOLS_Repair_Standard',
+	'clean_linked_elements'            => 'MOKODOLITOOLS_Repair_CleanLinkedElements',
+	'restore_thirdparties_logos'       => 'MOKODOLITOOLS_Repair_RestoreThirdPartyLogos',
+	'clean_menus'                      => 'MOKODOLITOOLS_Repair_CleanMenus',
+	'clean_orphelin_dir'               => 'MOKODOLITOOLS_Repair_CleanOrphanDirectories',
+	'clean_product_stock_batch'        => 'MOKODOLITOOLS_Repair_CleanProductStockBatch',
+	'set_empty_time_spent_amount'      => 'MOKODOLITOOLS_Repair_SetEmptyTimeSpentAmount',
+	'rebuild_product_thumbs'           => 'MOKODOLITOOLS_Repair_RebuildProductThumbs',
+	'force_disable_of_modules_not_found' => 'MOKODOLITOOLS_Repair_ForceDisableModulesNotFound',
+	'clean_perm_table'                 => 'MOKODOLITOOLS_Repair_CleanPermsTable',
+	'force_utf8_on_tables'             => 'MOKODOLITOOLS_Repair_ForceUTF8OnTables',
 ];
 
 $helpfulTools = [
-	[ 'label' => 'MOKOCRM_Tool_PHPInfo',      'href' => DOL_URL_ROOT . '/admin/system/phpinfo.php' ],
-	[ 'label' => 'MOKOCRM_Tool_Environment',  'href' => DOL_URL_ROOT . '/admin/system/dolibarr.php' ],
-	[ 'label' => 'MOKOCRM_Tool_AboutDolibarr','href' => DOL_URL_ROOT . '/admin/system/about.php' ],
+	[ 'label' => 'MOKODOLITOOLS_Tool_PHPInfo',      'href' => DOL_URL_ROOT . '/admin/system/phpinfo.php' ],
+	[ 'label' => 'MOKODOLITOOLS_Tool_Environment',  'href' => DOL_URL_ROOT . '/admin/system/dolibarr.php' ],
+	[ 'label' => 'MOKODOLITOOLS_Tool_AboutDolibarr','href' => DOL_URL_ROOT . '/admin/system/about.php' ],
 ];
 
 // -----------------------------------------------------------------------------
@@ -128,39 +128,39 @@ $islocked = (@file_exists($lockfile) || @file_exists($lockfile2))
 // -----------------------------------------------------------------------------
 $action = GETPOST('action','aZ09');
 if (!empty($action) && GETPOST('token','aZ09') == $_SESSION['newtoken']) {
-	$confFile = mokocrm_find_conf_file();
+	$confFile = mokodolitools_find_conf_file();
 	$messages = array();
 	$errors = array();
 
 	if ($action == 'fix_conf_perms') {
 		if ($confFile && @is_file($confFile)) {
-			$ok = @chmod($confFile, mokocrm_recommended_conf_perms());
-			if ($ok) $messages[] = $langs->trans('MOKOCRM_Sec_FixedConfPerms');
-			else $errors[] = $langs->trans('MOKOCRM_Sec_FixConfPermsFailed', $confFile);
+			$ok = @chmod($confFile, mokodolitools_recommended_conf_perms());
+			if ($ok) $messages[] = $langs->trans('MOKODOLITOOLS_Sec_FixedConfPerms');
+			else $errors[] = $langs->trans('MOKODOLITOOLS_Sec_FixConfPermsFailed', $confFile);
 		} else {
-			$errors[] = $langs->trans('MOKOCRM_Sec_ConfNotFound');
+			$errors[] = $langs->trans('MOKODOLITOOLS_Sec_ConfNotFound');
 		}
 	}
 	elseif ($action == 'create_lock') {
 		$targets = array($lockfile, $lockfile2);
 		$ok = false;
 		foreach ($targets as $t) { if ($t && @touch($t)) $ok = true; }
-		if ($ok) $messages[] = $langs->trans('MOKOCRM_Sec_LockCreated');
-		else $errors[] = $langs->trans('MOKOCRM_Sec_LockCreateFailed');
+		if ($ok) $messages[] = $langs->trans('MOKODOLITOOLS_Sec_LockCreated');
+		else $errors[] = $langs->trans('MOKODOLITOOLS_Sec_LockCreateFailed');
 	}
 	elseif ($action == 'remove_lock') {
 		$targets = array($lockfile, $lockfile2);
 		$ok = false;
 		foreach ($targets as $t) { if ($t && @file_exists($t) && @unlink($t)) $ok = true; }
-		if ($ok) $messages[] = $langs->trans('MOKOCRM_Sec_LockRemoved');
-		else $errors[] = $langs->trans('MOKOCRM_Sec_LockRemoveFailed');
+		if ($ok) $messages[] = $langs->trans('MOKODOLITOOLS_Sec_LockRemoved');
+		else $errors[] = $langs->trans('MOKODOLITOOLS_Sec_LockRemoveFailed');
 	}
 	elseif ($action == 'set_env_prod' || $action == 'set_env_dev') {
 		$val = ($action == 'set_env_dev') ? '2' : '0';
 		if (dolibarr_set_const($db, 'MAIN_FEATURES_LEVEL', $val, 'chaine', 0, '', $conf->entity) > 0) {
-			$messages[] = $langs->trans('MOKOCRM_Sec_EnvUpdated');
+			$messages[] = $langs->trans('MOKODOLITOOLS_Sec_EnvUpdated');
 		} else {
-			$errors[] = $langs->trans('MOKOCRM_Sec_EnvUpdateFailed');
+			$errors[] = $langs->trans('MOKODOLITOOLS_Sec_EnvUpdateFailed');
 		}
 	}
 
@@ -175,67 +175,67 @@ if (!empty($action) && GETPOST('token','aZ09') == $_SESSION['newtoken']) {
 // -----------------------------------------------------------------------------
 // UI: Notice + Filter + Accordion
 // -----------------------------------------------------------------------------
-print '<div class="opacitymedium">' . $langs->trans('MOKOCRM_LinksOpenInModal') . '</div>';
+print '<div class="opacitymedium">' . $langs->trans('MOKODOLITOOLS_LinksOpenInModal') . '</div>';
 print '<div class="divsearchfield" style="margin:8px 0 16px 0;">';
-print '<input type="text" id="mokocrm-filter" class="flat inputsearch" placeholder="' . dol_escape_htmltag($langs->trans('MOKOCRM_FilterPlaceholder')) . '" autocomplete="off">';
+print '<input type="text" id="mokodolitools-filter" class="flat inputsearch" placeholder="' . dol_escape_htmltag($langs->trans('MOKODOLITOOLS_FilterPlaceholder')) . '" autocomplete="off">';
 print '</div>';
 
-print '<div id="mokocrm-accordion">';
+print '<div id="mokodolitools-accordion">';
 
 // Section: Security Advisor (always)
-$confFile = mokocrm_find_conf_file();
+$confFile = mokodolitools_find_conf_file();
 $perm = $confFile ? (@fileperms($confFile) & 0777) : 0;
 $permOk = $confFile && !is_writable($confFile) && ($perm <= 0640);
 $envDev = ((int) $conf->global->MAIN_FEATURES_LEVEL >= 2);
-$envText = $envDev ? $langs->trans('MOKOCRM_Env_Development') : $langs->trans('MOKOCRM_Env_Production');
+$envText = $envDev ? $langs->trans('MOKODOLITOOLS_Env_Development') : $langs->trans('MOKODOLITOOLS_Env_Production');
 $lockPresent = $islocked;
 $lockIssue = (!$envDev && !$lockPresent); // In production, lock should exist
 
-print '<h3>' . $langs->trans('MOKOCRM_Sec_Title') . '</h3>';
+print '<h3>' . $langs->trans('MOKODOLITOOLS_Sec_Title') . '</h3>';
 print '<div>';
 print '<ul class="listwithicon">';
 
 // Config perms
-print '<li>' . $langs->trans('MOKOCRM_Sec_ConfigPerms') . ': ' . ($permOk ? $langs->trans('MOKOCRM_Sec_OK') : $langs->trans('MOKOCRM_Sec_Bad', decoct($perm)));
+print '<li>' . $langs->trans('MOKODOLITOOLS_Sec_ConfigPerms') . ': ' . ($permOk ? $langs->trans('MOKODOLITOOLS_Sec_OK') : $langs->trans('MOKODOLITOOLS_Sec_Bad', decoct($perm)));
 if (!$permOk) {
 	print ' <form method="post" action="" style="display:inline">'
 		. '<input type="hidden" name="token" value="' . newToken() . '">'
 		. '<input type="hidden" name="action" value="fix_conf_perms">'
-		. '<button class="button small" type="submit">' . $langs->trans('MOKOCRM_Sec_FixPerms') . '</button>'
+		. '<button class="button small" type="submit">' . $langs->trans('MOKODOLITOOLS_Sec_FixPerms') . '</button>'
 		. '</form>';
 }
 print '</li>';
 
 // Lock status
-print '<li>' . $langs->trans('MOKOCRM_Sec_LockStatus') . ': ' . ($lockPresent ? $langs->trans('MOKOCRM_Sec_LockPresent') : $langs->trans('MOKOCRM_Sec_LockMissing'));
+print '<li>' . $langs->trans('MOKODOLITOOLS_Sec_LockStatus') . ': ' . ($lockPresent ? $langs->trans('MOKODOLITOOLS_Sec_LockPresent') : $langs->trans('MOKODOLITOOLS_Sec_LockMissing'));
 if ($lockIssue) {
 	print ' <form method="post" action="" style="display:inline">'
 		. '<input type="hidden" name="token" value="' . newToken() . '">'
 		. '<input type="hidden" name="action" value="create_lock">'
-		. '<button class="button small" type="submit">' . $langs->trans('MOKOCRM_Sec_CreateLock') . '</button>'
+		. '<button class="button small" type="submit">' . $langs->trans('MOKODOLITOOLS_Sec_CreateLock') . '</button>'
 		. '</form>';
 } elseif ($envDev && $lockPresent) {
 	print ' <form method="post" action="" style="display:inline">'
 		. '<input type="hidden" name="token" value="' . newToken() . '">'
 		. '<input type="hidden" name="action" value="remove_lock">'
-		. '<button class="button small" type="submit">' . $langs->trans('MOKOCRM_Sec_RemoveLock') . '</button>'
+		. '<button class="button small" type="submit">' . $langs->trans('MOKODOLITOOLS_Sec_RemoveLock') . '</button>'
 		. '</form>';
 }
 print '</li>';
 
 // Environment
-print '<li>' . $langs->trans('MOKOCRM_Sec_Environment') . ': ' . $envText;
+print '<li>' . $langs->trans('MOKODOLITOOLS_Sec_Environment') . ': ' . $envText;
 if ($envDev) {
 	print ' <form method="post" action="" style="display:inline">'
 		. '<input type="hidden" name="token" value="' . newToken() . '">'
 		. '<input type="hidden" name="action" value="set_env_prod">'
-		. '<button class="button small" type="submit">' . $langs->trans('MOKOCRM_Sec_SetProd') . '</button>'
+		. '<button class="button small" type="submit">' . $langs->trans('MOKODOLITOOLS_Sec_SetProd') . '</button>'
 		. '</form>';
 } else {
 	print ' <form method="post" action="" style="display:inline">'
 		. '<input type="hidden" name="token" value="' . newToken() . '">'
 		. '<input type="hidden" name="action" value="set_env_dev">'
-		. '<button class="button small" type="submit">' . $langs->trans('MOKOCRM_Sec_SetDev') . '</button>'
+		. '<button class="button small" type="submit">' . $langs->trans('MOKODOLITOOLS_Sec_SetDev') . '</button>'
 		. '</form>';
 }
 print '</li>';
@@ -250,8 +250,8 @@ if (!$islocked) {
 		$testLinks[] = '<li><a href="' . DOL_URL_ROOT . '/install/repair.php?' . $param . '=test">' . $langs->trans($labelkey) . '</a></li>';
 	}
 	if (!empty($testLinks)) {
-		print '<h3>' . $langs->trans('MOKOCRM_Repair_TestTitle') . '</h3>';
-		print '<div><ul id="mokocrm-repairs-test" class="listwithicon">' . implode("\n", $testLinks) . '</ul></div>';
+		print '<h3>' . $langs->trans('MOKODOLITOOLS_Repair_TestTitle') . '</h3>';
+		print '<div><ul id="mokodolitools-repairs-test" class="listwithicon">' . implode("\n", $testLinks) . '</ul></div>';
 	}
 }
 
@@ -262,8 +262,8 @@ if (!$islocked) {
 		$runLinks[] = '<li><a href="' . DOL_URL_ROOT . '/install/repair.php?' . $param . '=confirmed">' . $langs->trans($labelkey) . '</a></li>';
 	}
 	if (!empty($runLinks)) {
-		print '<h3>' . $langs->trans('MOKOCRM_Repair_RunTitle') . '</h3>';
-		print '<div><ul id="mokocrm-repairs-run" class="listwithicon">' . implode("\n", $runLinks) . '</ul></div>';
+		print '<h3>' . $langs->trans('MOKODOLITOOLS_Repair_RunTitle') . '</h3>';
+		print '<div><ul id="mokodolitools-repairs-run" class="listwithicon">' . implode("\n", $runLinks) . '</ul></div>';
 	}
 }
 
@@ -273,45 +273,45 @@ foreach ($helpfulTools as $t) {
 	$helpLinks[] = '<li><a href="' . dol_escape_htmltag($t['href']) . '" rel="noopener">' . dol_escape_htmltag($langs->trans($t['label'])) . '</a></li>';
 }
 if (!empty($helpLinks)) {
-	print '<h3>' . $langs->trans('MOKOCRM_HelpfulToolsTitle') . '</h3>';
-	print '<div><ul id="mokocrm-tools" class="listwithicon">' . implode("\n", $helpLinks) . '</ul></div>';
+	print '<h3>' . $langs->trans('MOKODOLITOOLS_HelpfulToolsTitle') . '</h3>';
+	print '<div><ul id="mokodolitools-tools" class="listwithicon">' . implode("\n", $helpLinks) . '</ul></div>';
 }
 
 // Section: Security Tools (hide install-only entries when locked)
 $secLinks = [];
-$secLinks[] = '<li><a href="' . DOL_URL_ROOT . '/admin/security.php" rel="noopener">' . $langs->trans('MOKOCRM_Tool_SecurityConfig') . '</a></li>';
-$secLinks[] = '<li><a href="' . DOL_URL_ROOT . '/admin/tools/listevents.php" rel="noopener">' . $langs->trans('MOKOCRM_Tool_AuditSecurity') . '</a></li>';
+$secLinks[] = '<li><a href="' . DOL_URL_ROOT . '/admin/security.php" rel="noopener">' . $langs->trans('MOKODOLITOOLS_Tool_SecurityConfig') . '</a></li>';
+$secLinks[] = '<li><a href="' . DOL_URL_ROOT . '/admin/tools/listevents.php" rel="noopener">' . $langs->trans('MOKODOLITOOLS_Tool_AuditSecurity') . '</a></li>';
 if (!$islocked) {
-	$secLinks[] = '<li><a href="' . DOL_URL_ROOT . '/install/check.php" rel="noopener">' . $langs->trans('MOKOCRM_Tool_InstallChecker') . '</a></li>';
+	$secLinks[] = '<li><a href="' . DOL_URL_ROOT . '/install/check.php" rel="noopener">' . $langs->trans('MOKODOLITOOLS_Tool_InstallChecker') . '</a></li>';
 }
-$secLinks[] = '<li><a href="' . DOL_URL_ROOT . '/admin/tools/purge.php?choice=tempfiles" rel="noopener">' . $langs->trans('MOKOCRM_Tool_PurgeCache') . '</a></li>';
-$secLinks[] = '<li><a href="' . DOL_URL_ROOT . '/admin/tools/purge.php?choice=logfile" rel="noopener">' . $langs->trans('MOKOCRM_Tool_PurgeLogs') . '</a></li>';
-$secLinks[] = '<li><a href="' . DOL_URL_ROOT . '/user/index.php" rel="noopener">' . $langs->trans('MOKOCRM_Tool_ManageUsers') . '</a></li>';
-$secLinks[] = '<li><a href="' . DOL_URL_ROOT . '/user/group/index.php" rel="noopener">' . $langs->trans('MOKOCRM_Tool_ManageGroups') . '</a></li>';
+$secLinks[] = '<li><a href="' . DOL_URL_ROOT . '/admin/tools/purge.php?choice=tempfiles" rel="noopener">' . $langs->trans('MOKODOLITOOLS_Tool_PurgeCache') . '</a></li>';
+$secLinks[] = '<li><a href="' . DOL_URL_ROOT . '/admin/tools/purge.php?choice=logfile" rel="noopener">' . $langs->trans('MOKODOLITOOLS_Tool_PurgeLogs') . '</a></li>';
+$secLinks[] = '<li><a href="' . DOL_URL_ROOT . '/user/index.php" rel="noopener">' . $langs->trans('MOKODOLITOOLS_Tool_ManageUsers') . '</a></li>';
+$secLinks[] = '<li><a href="' . DOL_URL_ROOT . '/user/group/index.php" rel="noopener">' . $langs->trans('MOKODOLITOOLS_Tool_ManageGroups') . '</a></li>';
 if (!empty($secLinks)) {
-	print '<h3>' . $langs->trans('MOKOCRM_SecurityToolsTitle') . '</h3>';
-	print '<div><ul id="mokocrm-secure" class="listwithicon">' . implode("\n", $secLinks) . '</ul></div>';
+	print '<h3>' . $langs->trans('MOKODOLITOOLS_SecurityToolsTitle') . '</h3>';
+	print '<div><ul id="mokodolitools-secure" class="listwithicon">' . implode("\n", $secLinks) . '</ul></div>';
 }
 
 // Section: Improvements (hidden when locked because actions require installer)
 $improveLinks = [];
 if (!$islocked) {
-	$improveLinks[] = '<li><a href="' . DOL_URL_ROOT . '/install/repair.php?rebuild_product_thumbs=confirmed" rel="noopener">' . $langs->trans('MOKOCRM_Tool_RebuildThumbs') . '</a></li>';
-	$improveLinks[] = '<li><a href="' . DOL_URL_ROOT . '/install/repair.php?force_utf8_on_tables=confirmed" rel="noopener">' . $langs->trans('MOKOCRM_Tool_ForceUTF8') . '</a></li>';
+	$improveLinks[] = '<li><a href="' . DOL_URL_ROOT . '/install/repair.php?rebuild_product_thumbs=confirmed" rel="noopener">' . $langs->trans('MOKODOLITOOLS_Tool_RebuildThumbs') . '</a></li>';
+	$improveLinks[] = '<li><a href="' . DOL_URL_ROOT . '/install/repair.php?force_utf8_on_tables=confirmed" rel="noopener">' . $langs->trans('MOKODOLITOOLS_Tool_ForceUTF8') . '</a></li>';
 }
 if (!empty($improveLinks)) {
-	print '<h3>' . $langs->trans('MOKOCRM_ImprovementsTitle') . '</h3>';
-	print '<div><ul id="mokocrm-improve" class="listwithicon">' . implode("\n", $improveLinks) . '</ul></div>';
+	print '<h3>' . $langs->trans('MOKODOLITOOLS_ImprovementsTitle') . '</h3>';
+	print '<div><ul id="mokodolitools-improve" class="listwithicon">' . implode("\n", $improveLinks) . '</ul></div>';
 }
 
-print '</div>'; // #mokocrm-accordion
+print '</div>'; // #mokodolitools-accordion
 
 // Modal container + JS (init accordion + filter + modal behavior)
-print '<div id="mokocrm-modal" style="display:none;"></div>';
+print '<div id="mokodolitools-modal" style="display:none;"></div>';
 print '<script>
 jQuery(function($){
   // Accordion
-  $("#mokocrm-accordion").accordion({
+  $("#mokodolitools-accordion").accordion({
 	collapsible: true,
 	heightStyle: "content",
 	active: false
@@ -325,8 +325,8 @@ jQuery(function($){
 	if (isExternal) return; // let browser handle
 	e.preventDefault();
 	var title = $.trim($(this).text()) || "Tool";
-	var $dlg = $("#mokocrm-modal");
-	if (!$dlg.length) { $dlg = $("<div id=\"mokocrm-modal\"></div>").appendTo("body"); }
+	var $dlg = $("#mokodolitools-modal");
+	if (!$dlg.length) { $dlg = $("<div id=\"mokodolitools-modal\"></div>").appendTo("body"); }
 	$dlg.empty();
 	var $frame = $("<iframe>").attr({src: href, width: "100%", height: "100%", frameborder: 0, allow: "clipboard-read; clipboard-write"});
 	$dlg.append($frame).dialog({
@@ -337,12 +337,12 @@ jQuery(function($){
 	  close: function(){ $(this).dialog("destroy").hide().empty(); }
 	});
   }
-  $(document).on("click", "#mokocrm-tools a, #mokocrm-secure a, #mokocrm-repairs-test a, #mokocrm-repairs-run a, #mokocrm-improve a", openInModal);
+  $(document).on("click", "#mokodolitools-tools a, #mokodolitools-secure a, #mokodolitools-repairs-test a, #mokodolitools-repairs-run a, #mokodolitools-improve a", openInModal);
 
   // Quick filter (filter list items across sections)
-  $(document).on("input", "#mokocrm-filter", function(){
+  $(document).on("input", "#mokodolitools-filter", function(){
 	var q = $(this).val().toLowerCase();
-	$("#mokocrm-accordion ul.listwithicon li").each(function(){
+	$("#mokodolitools-accordion ul.listwithicon li").each(function(){
 	  var t = $(this).text().toLowerCase();
 	  $(this).toggle(t.indexOf(q) !== -1);
 	});

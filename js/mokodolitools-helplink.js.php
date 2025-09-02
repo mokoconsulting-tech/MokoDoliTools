@@ -18,12 +18,12 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see https://www.gnu.org/licenses/ .
 ========================================================================
 FILE INFORMATION
-INGROUP: MokoCRM
+INGROUP: MokoDoliTools
 FILE: helplink-rewriter.js.php
 VERSION: 02.05.02
 BRIEF: Rewrites Dolibarr wiki links to a custom search URL, controlled by settings.
-PATH: htdocs/custom/mokocrm/js/helplink-rewriter.js.php
-NOTE: Uses MOKOCRM_HELPLINK (enable) and MOKOCRM_HELPLINK_URL (base).
+PATH: htdocs/custom/mokodolitools/js/helplink-rewriter.js.php
+NOTE: Uses MOKODOLITOOLS_HELPLINK (enable) and MOKODOLITOOLS_HELPLINK_URL (base).
 VARIABLES:
 ========================================================================
 */
@@ -60,12 +60,12 @@ global $conf;
 // --- Settings -----------------------------------------------------------
 $default_base = 'https://mokoconsulting.tech/search?q=CRM%3A%20';
 
-$enabled_val = isset($conf->global->MOKOCRM_HELPLINK) ? (string)$conf->global->MOKOCRM_HELPLINK : '1';
+$enabled_val = isset($conf->global->MOKODOLITOOLS_HELPLINK) ? (string)$conf->global->MOKODOLITOOLS_HELPLINK : '1';
 $enabled_str = strtolower(trim($enabled_val));
 $enabled = in_array($enabled_str, array('1','true','yes','on','y'), true);
 
-$raw_base = (isset($conf->global->MOKOCRM_HELPLINK_URL) && is_string($conf->global->MOKOCRM_HELPLINK_URL) && $conf->global->MOKOCRM_HELPLINK_URL !== '')
-		? trim($conf->global->MOKOCRM_HELPLINK_URL)
+$raw_base = (isset($conf->global->MOKODOLITOOLS_HELPLINK_URL) && is_string($conf->global->MOKODOLITOOLS_HELPLINK_URL) && $conf->global->MOKODOLITOOLS_HELPLINK_URL !== '')
+		? trim($conf->global->MOKODOLITOOLS_HELPLINK_URL)
 		: $default_base;
 
 if (!filter_var($raw_base, FILTER_VALIDATE_URL)) {
@@ -82,7 +82,7 @@ if (empty($dolibarr_nocache)) {
 }
 ?>
 
-/* MokoCRM HelpLink Rewriter (settings-aware) */
+/* MokoDoliTools HelpLink Rewriter (settings-aware) */
 (function () {
 	"use strict";
 	const CONFIG = {
@@ -91,12 +91,12 @@ if (empty($dolibarr_nocache)) {
 	};
 
 	if (!CONFIG.enabled) {
-		// Feature disabled via MOKOCRM_HELPLINK
+		// Feature disabled via MOKODOLITOOLS_HELPLINK
 		return;
 	}
 
 	const WIKI_RX = /^https?:\/\/wiki\.dolibarr\.org\/index\.php\/?/i;
-	const MARK_ATTR = "data-mokocrm-wiki-rewritten";
+	const MARK_ATTR = "data-mokodolitools-wiki-rewritten";
 
 	function rewriteLinks(scope) {
 		const root = scope && scope.querySelectorAll ? scope : document;

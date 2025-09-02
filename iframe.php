@@ -22,9 +22,9 @@
 /**
  *	\file       mokodolitools/admin/iframe.php
  *	\ingroup    mokodolitools
- *	\brief      Iframe include of Adminer 
+ *	\brief      Iframe include of Adminer
  */
- 
+
 ob_start ();
 
 // Load Dolibarr environment
@@ -92,7 +92,7 @@ function adminer_object()
         // AdminerTheme has to be the last one.
         new AdminerTheme('default-blue'),
     ];
-	
+
     return new AdminerPlugin($plugins);
 }
 

@@ -52,11 +52,9 @@ desktop.ini
 .DS_Store
 Thumbs.db
 .idea/
-*.sublime-project
-*.sublime-workspace
+*.sublime*
 sftp-config*.json
-sync.ffs_db
-*.ffs_gui
+*3.ffs*
 
 # Editor and IDE files
 .vscode/

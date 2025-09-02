@@ -16,9 +16,9 @@
  */
 
 /**
- * \file    mokocrm/css/fontawesome/6.7.2/regular.css.php
- * \ingroup mokocrm
- * \brief   CSS file for module MokoCRM.
+ * \file    mokodolitools/css/fontawesome/6.7.2/regular.css.php
+ * \ingroup mokodolitools
+ * \brief   CSS file for module MokoDoliTools.
  */
 
 //if (!defined('NOREQUIREUSER')) define('NOREQUIREUSER','1'); // Not disabled because need to load personalized language

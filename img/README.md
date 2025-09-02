@@ -5,10 +5,10 @@ Directory for module image files
 You can put here the .png files of your module:
 
 
-If the picto of your module is an image (property $picto has been set to 'mokocrm.png@mokocrm', you can put into this
-directory a .png file called *object_mokocrm.png* (16x16 or 32x32 pixels)
+If the picto of your module is an image (property $picto has been set to 'mokodolitools.png@mokodolitools', you can put into this
+directory a .png file called *object_mokodolitools.png* (16x16 or 32x32 pixels)
 
 
-If the picto of an object is an image (property $picto of the object.class.php has been set to 'myobject.png@mokocrm', then you can put into this
+If the picto of an object is an image (property $picto of the object.class.php has been set to 'myobject.png@mokodolitools', then you can put into this
 directory a .png file called *object_myobject.png* (16x16 or 32x32 pixels)
 

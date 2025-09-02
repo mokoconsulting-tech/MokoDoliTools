@@ -18,35 +18,35 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see https://www.gnu.org/licenses/ .
 ========================================================================
 FILE INFORMATION
-INGROUP: MokoCRM
-FILE: mokocrm/admin/setup.php
+INGROUP: MokoDoliTools
+FILE: mokodolitools/admin/setup.php
 VERSION: 02.05.02
-BRIEF: Setup page for the MokoCRM module (help link settings only; URL hidden unless enabled).
-PATH: htdocs/custom/mokocrm/admin/setup.php
+BRIEF: Setup page for the MokoDoliTools module (help link settings only; URL hidden unless enabled).
+PATH: htdocs/custom/mokodolitools/admin/setup.php
 NOTE: GeoIP settings are intentionally not loaded or shown here; managed elsewhere.
-VARIABLES: MOKOCRM_HELPLINK (default yes), MOKOCRM_HELPLINK_URL
+VARIABLES: MOKODOLITOOLS_HELPLINK (default yes), MOKODOLITOOLS_HELPLINK_URL
 ========================================================================
 */
 
 // Load Dolibarr environment
 $res = 0;
 if (!$res && !empty($_SERVER['CONTEXT_DOCUMENT_ROOT'])) {
-    $res = @include $_SERVER['CONTEXT_DOCUMENT_ROOT'].'/main.inc.php';
+	$res = @include $_SERVER['CONTEXT_DOCUMENT_ROOT'].'/main.inc.php';
 }
 if (!$res && file_exists('../../main.inc.php')) {
-    $res = @include '../../main.inc.php';
+	$res = @include '../../main.inc.php';
 }
 if (!$res && file_exists('../../../main.inc.php')) {
-    $res = @include '../../../main.inc.php';
+	$res = @include '../../../main.inc.php';
 }
 if (!$res) {
-    die('Include of main fails');
+	die('Include of main fails');
 }
 
 // Libraries
 require_once DOL_DOCUMENT_ROOT.'/core/lib/admin.lib.php';
 require_once DOL_DOCUMENT_ROOT.'/core/class/html.form.class.php';
-require_once '../lib/mokocrm.lib.php';
+require_once '../lib/mokodolitools.lib.php';
 
 /**
  * @var Conf        $conf
@@ -65,42 +65,42 @@ require_once '../lib/mokocrm.lib.php';
  * @param string $token
  * @return bool
  */
-function mokocrm_verify_csrf($token)
+function mokodolitools_verify_csrf($token)
 {
-    if (function_exists('dol_verifyToken')) {
-        return dol_verifyToken($token);
-    }
-    if (function_exists('checkToken')) {
-        return checkToken($token);
-    }
-    if (empty($token)) return false;
-    if (session_status() !== PHP_SESSION_ACTIVE) return false;
+	if (function_exists('dol_verifyToken')) {
+		return dol_verifyToken($token);
+	}
+	if (function_exists('checkToken')) {
+		return checkToken($token);
+	}
+	if (empty($token)) return false;
+	if (session_status() !== PHP_SESSION_ACTIVE) return false;
 
-    // Common Dolibarr session keys set by newToken()
-    $candidates = array('newtoken', 'token');
-    foreach ($candidates as $key) {
-        if (!empty($_SESSION[$key])) {
-            if (function_exists('hash_equals')) {
-                if (hash_equals((string) $_SESSION[$key], (string) $token)) return true;
-            } else {
-                if ((string) $_SESSION[$key] === (string) $token) return true;
-            }
-        }
-    }
-    return false;
+	// Common Dolibarr session keys set by newToken()
+	$candidates = array('newtoken', 'token');
+	foreach ($candidates as $key) {
+		if (!empty($_SESSION[$key])) {
+			if (function_exists('hash_equals')) {
+				if (hash_equals((string) $_SESSION[$key], (string) $token)) return true;
+			} else {
+				if ((string) $_SESSION[$key] === (string) $token) return true;
+			}
+		}
+	}
+	return false;
 }
 
 // ----------------------------------------------------------------------
 
 // Translations
-$langs->loadLangs(array('admin', 'mokocrm@mokocrm'));
+$langs->loadLangs(array('admin', 'mokodolitools@mokodolitools'));
 
 // Initialize hooks
-$hookmanager->initHooks(array('mokocrmsetup', 'globalsetup'));
+$hookmanager->initHooks(array('mokodolitoolssetup', 'globalsetup'));
 
 // Access control
 if (empty($user->admin)) {
-    accessforbidden();
+	accessforbidden();
 }
 
 // Parameters
@@ -117,40 +117,40 @@ $entityForSave = 0; // apply to all entities
 
 // Save settings (Help Link only)
 if ($action === 'save' && !empty($user->admin)) {
-    if (!mokocrm_verify_csrf($token)) {
-        accessforbidden('Bad token');
-    }
+	if (!mokodolitools_verify_csrf($token)) {
+		accessforbidden('Bad token');
+	}
 
-    // Coerce values to strings to avoid ErrorBadValueForParamNotAString
-    $valHelpLink    = GETPOST('MOKOCRM_HELPLINK', 'int') ? '1' : '0'; // '1' or '0'
-    $valHelpLinkUrl = (string) (GETPOST('MOKOCRM_HELPLINK_URL', 'restricthtml') ?? '');
+	// Coerce values to strings to avoid ErrorBadValueForParamNotAString
+	$valHelpLink    = GETPOST('MOKODOLITOOLS_HELPLINK', 'int') ? '1' : '0'; // '1' or '0'
+	$valHelpLinkUrl = (string) (GETPOST('MOKODOLITOOLS_HELPLINK_URL', 'restricthtml') ?? '');
 
-    if ($valHelpLinkUrl === '') {
-        $valHelpLinkUrl = 'https://mokoconsulting.tech/search?q=CRM%3A%20';
-    }
+	if ($valHelpLinkUrl === '') {
+		$valHelpLinkUrl = 'https://mokoconsulting.tech/search?q=CRM%3A%20';
+	}
 
-    $error = 0;
-    $db->begin();
+	$error = 0;
+	$db->begin();
 
-    // Save toggle (entity=0)
-    if (!dolibarr_set_const($db, 'MOKOCRM_HELPLINK', $valHelpLink, 'yesno', 0, '', $entityForSave)) $error++;
+	// Save toggle (entity=0)
+	if (!dolibarr_set_const($db, 'MOKODOLITOOLS_HELPLINK', $valHelpLink, 'yesno', 0, '', $entityForSave)) $error++;
 
-    // Only save/update the URL if the feature is enabled; otherwise preserve existing value
-    if ($valHelpLink === '1') {
-        if (!dolibarr_set_const($db, 'MOKOCRM_HELPLINK_URL', $valHelpLinkUrl, 'chaine', 0, '', $entityForSave)) $error++;
-    }
+	// Only save/update the URL if the feature is enabled; otherwise preserve existing value
+	if ($valHelpLink === '1') {
+		if (!dolibarr_set_const($db, 'MOKODOLITOOLS_HELPLINK_URL', $valHelpLinkUrl, 'chaine', 0, '', $entityForSave)) $error++;
+	}
 
-    if (!$error) {
-        $db->commit();
-        setEventMessages($langs->trans('SetupSaved'), null, 'mesgs');
-    } else {
-        $db->rollback();
-        setEventMessages($langs->trans('ErrorFailedToSave'), null, 'errors');
-    }
+	if (!$error) {
+		$db->commit();
+		setEventMessages($langs->trans('SetupSaved'), null, 'mesgs');
+	} else {
+		$db->rollback();
+		setEventMessages($langs->trans('ErrorFailedToSave'), null, 'errors');
+	}
 
-    // Avoid resubmission
-    header('Location: '.$_SERVER['PHP_SELF'].(empty($backtopage) ? '' : '?backtopage='.urlencode($backtopage)));
-    exit;
+	// Avoid resubmission
+	header('Location: '.$_SERVER['PHP_SELF'].(empty($backtopage) ? '' : '?backtopage='.urlencode($backtopage)));
+	exit;
 }
 
 /*
@@ -160,25 +160,25 @@ if ($action === 'save' && !empty($user->admin)) {
 $form = new Form($db);
 
 // Compute current values with defaults (default helplink = YES)
-$helpEnabled = (getDolGlobalInt('MOKOCRM_HELPLINK', 1) ? 1 : 0);
-$helpUrl     = (string) getDolGlobalString('MOKOCRM_HELPLINK_URL', 'https://mokoconsulting.tech/search?q=CRM%3A%20');
+$helpEnabled = (getDolGlobalInt('MOKODOLITOOLS_HELPLINK', 1) ? 1 : 0);
+$helpUrl     = (string) getDolGlobalString('MOKODOLITOOLS_HELPLINK_URL', 'https://mokoconsulting.tech/search?q=CRM%3A%20');
 
 // Dynamic help URL only when enabled
 $help_url = $helpEnabled ? ($helpUrl !== '' ? $helpUrl : 'https://mokoconsulting.tech/search?q=CRM%3A%20') : '';
 
-$title = $langs->trans('MokoCRMSetup');
-llxHeader('', $title, $help_url, '', 0, 0, '', '', '', 'mod-mokocrm page-admin');
+$title = $langs->trans('MokoDoliToolsSetup');
+llxHeader('', $title, $help_url, '', 0, 0, '', '', '', 'mod-mokodolitools page-admin');
 
 // Subheader & breadcrumbs
 $linkback = '<a href="'.($backtopage ? $backtopage : DOL_URL_ROOT.'/admin/modules.php?restore_lastsearch_values=1').'">'.$langs->trans('BackToModuleList').'</a>';
 print load_fiche_titre($title, $linkback, 'title_setup');
 
 // Tabs
-$head = mokocrmAdminPrepareHead();
-print dol_get_fiche_head($head, 'settings', $title, -1, 'mokocrm@mokocrm');
+$head = mokodolitoolsAdminPrepareHead();
+print dol_get_fiche_head($head, 'settings', $title, -1, 'mokodolitools@mokodolitools');
 
 // Intro
-print '<div class="opacitymedium">'.$langs->trans('MokoCRMSetupPage').'</div>';
+print '<div class="opacitymedium">'.$langs->trans('MokoDoliToolsSetupPage').'</div>';
 print '<br>';
 
 // Settings form
@@ -186,7 +186,7 @@ print '<form action="'.dol_escape_htmltag($_SERVER['PHP_SELF']).'" method="post"
 print '<input type="hidden" name="token" value="'.newToken().'">';
 print '<input type="hidden" name="action" value="save">';
 if (!empty($backtopage)) {
-    print '<input type="hidden" name="backtopage" value="'.dol_escape_htmltag($backtopage).'">';
+	print '<input type="hidden" name="backtopage" value="'.dol_escape_htmltag($backtopage).'">';
 }
 
 print '<div class="div-table-responsive-no-min">';
@@ -202,15 +202,15 @@ print '</tr>';
 // Help link toggle (defaults to yes if not set)
 print '<tr class="oddeven">';
 print '<td>'.$langs->trans('HelpLinkEnabled').'</td>';
-print '<td>'.$form->selectyesno('MOKOCRM_HELPLINK', $helpEnabled, 1).'</td>';
+print '<td>'.$form->selectyesno('MOKODOLITOOLS_HELPLINK', $helpEnabled, 1).'</td>';
 print '<td class="right opacitymedium">'.$langs->trans('IfEnabledAHelpLinkWillShow').'</td>';
 print '</tr>';
 
 // Help link URL row — VISIBLE ONLY when enabled
 $initialDisplay = $helpEnabled ? '' : ' style="display:none"';
-print '<tr class="oddeven" id="row_MOKOCRM_HELPLINK_URL"'.$initialDisplay.'>';
+print '<tr class="oddeven" id="row_MOKODOLITOOLS_HELPLINK_URL"'.$initialDisplay.'>';
 print '<td>'.$langs->trans('HelpLinkURL').'</td>';
-print '<td><input type="text" class="minwidth500" name="MOKOCRM_HELPLINK_URL" id="MOKOCRM_HELPLINK_URL" value="'.dol_escape_htmltag($helpUrl).'"></td>';
+print '<td><input type="text" class="minwidth500" name="MOKODOLITOOLS_HELPLINK_URL" id="MOKODOLITOOLS_HELPLINK_URL" value="'.dol_escape_htmltag($helpUrl).'"></td>';
 print '<td class="right opacitymedium">'.$langs->trans('BaseURLForHelpSearch').'</td>';
 print '</tr>';
 
@@ -220,9 +220,9 @@ print '</div>';
 // Hooks: allow other modules to inject fields/buttons
 $parameters = array();
 $object = new stdClass();
-$reshook = $hookmanager->executeHooks('formMokoCRMSetup', $parameters, $object, $action);
+$reshook = $hookmanager->executeHooks('formMokoDoliToolsSetup', $parameters, $object, $action);
 if ($reshook < 0) {
-    setEventMessages($hookmanager->error, $hookmanager->errors, 'errors');
+	setEventMessages($hookmanager->error, $hookmanager->errors, 'errors');
 }
 
 // Buttons
@@ -235,17 +235,17 @@ print '</form>';
 // Client-side dependency: show/hide URL row based on toggle
 print '<script>
 (function(){
-    function toggleHelpUrlRow(){
-        var sel = document.querySelector(\'select[name="MOKOCRM_HELPLINK"]\');
-        var row = document.getElementById("row_MOKOCRM_HELPLINK_URL");
-        if (!sel || !row) return;
-        row.style.display = String(sel.value) === "1" ? "" : "none";
-    }
-    document.addEventListener("DOMContentLoaded", function(){
-        toggleHelpUrlRow();
-        var sel = document.querySelector(\'select[name="MOKOCRM_HELPLINK"]\');
-        if (sel) sel.addEventListener("change", toggleHelpUrlRow);
-    });
+	function toggleHelpUrlRow(){
+		var sel = document.querySelector(\'select[name="MOKODOLITOOLS_HELPLINK"]\');
+		var row = document.getElementById("row_MOKODOLITOOLS_HELPLINK_URL");
+		if (!sel || !row) return;
+		row.style.display = String(sel.value) === "1" ? "" : "none";
+	}
+	document.addEventListener("DOMContentLoaded", function(){
+		toggleHelpUrlRow();
+		var sel = document.querySelector(\'select[name="MOKODOLITOOLS_HELPLINK"]\');
+		if (sel) sel.addEventListener("change", toggleHelpUrlRow);
+	});
 })();
 </script>';
 

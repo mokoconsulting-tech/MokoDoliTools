@@ -17,16 +17,16 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see https://www.gnu.org/licenses/ .
 ========================================================================
 FILE INFORMATION
-INGROUP: MokoCRM
+INGROUP: MokoDoliTools
 FILE: README.md
 VERSION: 02.05.02
-BRIEF: Readme and upgrade notes for the MokoCRM Dolibarr module
-PATH: htdocs/custom/mokocrm/README.md
+BRIEF: Readme and upgrade notes for the MokoDoliTools Dolibarr module
+PATH: htdocs/custom/mokodolitools/README.md
 NOTE: Updated to reflect project sync notes as of 2025-08-28.
 ========================================================================
 -->
 
-# MokoCRM — Dolibarr Module (v2.5) 🧩
+# MokoDoliTools — Dolibarr Module (v2.5) 🧩
 
 > Core utilities and conventions for the Moko‑prefixed module suite on Dolibarr.
 
@@ -34,7 +34,7 @@ NOTE: Updated to reflect project sync notes as of 2025-08-28.
 
 ## Overview
 
-MokoCRM provides shared conventions, assets, and admin utilities for all modules that start with the `Moko`/`moko` prefix. It standardizes file layout, language keys, visibility rules, and a few quality‑of‑life admin pages so the rest of the Moko family can stay light and consistent.
+MokoDoliTools provides shared conventions, assets, and admin utilities for all modules that start with the `Moko`/`moko` prefix. It standardizes file layout, language keys, visibility rules, and a few quality‑of‑life admin pages so the rest of the Moko family can stay light and consistent.
 
 ## Features ✨
 
