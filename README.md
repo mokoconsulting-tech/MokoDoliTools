@@ -34,7 +34,7 @@ NOTE: Updated to reflect project sync notes as of 2025-08-28.
 
 ## Overview
 
-MokoDoliTools is a module providing MokoDoliTools UI, configuration pages, tools, and helpers. MokoDoliTools extends Dolibarr with curated defaults, a lightweight UI layer, and an admin toolkit. It adds Setup, Tools (Secure & Repair, Health Checks, Environment Info), and DBAdmin pages; supports entity-aware visibility (e.g., hide Mailing/Website while active); ships with en_US only; and emphasizes safe-by-default operations for multi-entity deployments.
+MokoDoliTools is a module providing MokoDoliTools UI, configuration pages, tools, and helpers. MokoDoliTools extends Dolibarr with curated defaults, a lightweight UI layer, and an admin toolkit. It adds Setup, Tools (Secure & Repair, Health Checks, Environment Info), and DBAdmin pages; supports entity-aware visibility; ships with en_US only; and emphasizes safe-by-default operations for multi-entity deployments.
 
 ## Features ✨
 
