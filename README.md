@@ -26,7 +26,7 @@ NOTE: Updated to reflect project sync notes as of 2025-08-28.
 ========================================================================
 -->
 
-# MokoDoliTools — Dolibarr Module (v2.5) 🧩
+# MokoDoliTools — Dolibarr Module (v02.05.02) 🧩
 
 > Core utilities and conventions for the Moko‑prefixed module suite on Dolibarr.
 

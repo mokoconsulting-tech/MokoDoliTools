@@ -1,30 +1,33 @@
 <?php
-/* Copyright (C) 2001-2005 Rodolphe Quiedeville <rodolphe@quiedeville.org>
- * Copyright (C) 2004-2015 Laurent Destailleur  <eldy@users.sourceforge.net>
- * Copyright (C) 2005-2012 Regis Houssin        <regis.houssin@inodbox.com>
- * Copyright (C) 2015      Jean-François Ferry	<jfefe@aternatik.fr>
- * Copyright (C) 2020      Ksar                 <ksar.ksar@gmail.com>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <https://www.gnu.org/licenses/>.
- */
+/*
+ Copyright (C) 2025 Moko Consulting <hello@mokoconsulting.tech>
+ This file is part of a Moko Consulting project.
 
-/**
- *	\file       mokodolitools/admin/iframe.php
- *	\ingroup    mokodolitools
- *	\brief      Iframe include of Adminer 
- */
- 
+ SPDX-License-Identifier: GPL-3.0-or-later
+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 3 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see https://www.gnu.org/licenses/ .
+
+ FILE INFORMATION
+ DEFGROUP: Dolibarr
+ INGROUP:  MokoDoliTools
+ FILE:     admin/iframe.php
+ VERSION:  02.05.02
+ BRIEF:    Admin utility for embedding or displaying content via iframe
+ PATH:     mokodolitools/admin/iframe.php
+ NOTE:     This file is part of the MokoDoliTools module for Dolibarr
+*/
+
 ob_start ();
 
 // Load Dolibarr environment
@@ -56,7 +59,7 @@ if (!$res) die("Include of main fails");
 
 // Security check - Protection if external user
 if (isModEnabled('mokodolitools') < 1 || !($user->rights->mokodolitools->dbadmin->access)) {
-    accessforbidden('',0,0);
+	accessforbidden('',0,0);
 }
 //Create the Adminer session token in order to avoid php waring
 //TO DO : Understand why it is necessary
@@ -72,28 +75,28 @@ if ($_SESSION["db"]["server"][""][""][""] != true){
 function adminer_object()
 {
 	// Required to run any plugin.
-    include_once "../adminer/plugins/plugin.php";
+	include_once "../adminer/plugins/plugin.php";
 
-    // Plugins auto-loader.
-    foreach (glob("../adminer/plugins/*.php") as $filename) {
-        include_once "./$filename";
-    }
+	// Plugins auto-loader.
+	foreach (glob("../adminer/plugins/*.php") as $filename) {
+		include_once "./$filename";
+	}
 
-    // Specify enabled plugins here.
-    $plugins = [
+	// Specify enabled plugins here.
+	$plugins = [
 		new AdminerDoliLogin(),
-        new AdminerTablesFilter(),
-        new AdminerSimpleMenu(),
-        new AdminerCollations(),
-        new AdminerDumpDate(),
+		new AdminerTablesFilter(),
+		new AdminerSimpleMenu(),
+		new AdminerCollations(),
+		new AdminerDumpDate(),
 		new AdminerDumpZip(),
 		new AdminerFrames(true),
 
-        // AdminerTheme has to be the last one.
-        new AdminerTheme('default-blue'),
-    ];
-	
-    return new AdminerPlugin($plugins);
+		// AdminerTheme has to be the last one.
+		new AdminerTheme('default-blue'),
+	];
+
+	return new AdminerPlugin($plugins);
 }
 
 // Include original Adminer.
