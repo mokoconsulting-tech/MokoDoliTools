@@ -1,27 +1,33 @@
 <?php
-/* Copyright (C) 2004-2017 Laurent Destailleur  <eldy@users.sourceforge.net>
- * Copyright (C) 2025               Jonathan Miller || Moko Consulting      <dev@mokoconsulting.tech>
- * Copyright (C) 2024       Frédéric France         <frederic.france@free.fr>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
+/*
+ Copyright (C) 2025 Moko Consulting <hello@mokoconsulting.tech>
+ This file is part of a Moko Consulting project.
 
-/**
- * \file    mokodolitools/admin/dbadmin.php
- * \ingroup mokodolitools
- * \brief   DBAdmin page of module MokoDoliTools.
- */
+ SPDX-License-Identifier: GPL-3.0-or-later
+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 3 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see https://www.gnu.org/licenses/ .
+
+ FILE INFORMATION
+ DEFGROUP: Dolibarr
+ INGROUP:  MokoDoliTools
+ FILE:     admin/dbadmin.php
+ VERSION:  02.05.02
+ BRIEF:    Admin interface for database administration within MokoDoliTools
+ PATH:     mokodolitools/admin/dbadmin.php
+ NOTE:     This file is part of the MokoDoliTools module for Dolibarr
+*/
+
 
 // Load Dolibarr environment
 $res = 0;
