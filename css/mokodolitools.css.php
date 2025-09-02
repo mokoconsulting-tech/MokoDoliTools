@@ -18,13 +18,13 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see https://www.gnu.org/licenses/ .
 ========================================================================
 FILE INFORMATION
-INGROUP: MokoCRM
-FILE: mokocrm.css.php
-VERSION: 02.05.01
-BRIEF: Dynamic CSS for MokoCRM UI tokens, utilities, icons, and admin tooling views
-PATH: htdocs/custom/mokocrm/mokocrm.css.php
+INGROUP: MokoDoliTools
+FILE: mokodolitools.css.php
+VERSION: 02.05.02
+BRIEF: Dynamic CSS for MokoDoliTools UI tokens, utilities, icons, and admin tooling views
+PATH: htdocs/custom/mokodolitools/mokodolitools.css.php
 NOTE: Serves CSS with cache headers; colors can be overridden via Dolibarr conf constants
-VARIABLES: MOKOCRM_PRIMARY_COLOR, MOKOCRM_ACCENT_COLOR, MOKOCRM_NEUTRAL_COLOR, MOKOCRM_RADIUS, MOKOCRM_HELPLINK
+VARIABLES: MOKODOLITOOLS_PRIMARY_COLOR, MOKODOLITOOLS_ACCENT_COLOR, MOKODOLITOOLS_NEUTRAL_COLOR, MOKODOLITOOLS_RADIUS, MOKODOLITOOLS_HELPLINK
 ========================================================================
 */
 
@@ -46,7 +46,7 @@ session_cache_limiter('public');
 
 // ---- Load Dolibarr environment ------------------------------------------------------------------
 $res = 0;
-// Try the usual relative paths from /htdocs/custom/mokocrm/
+// Try the usual relative paths from /htdocs/custom/mokodolitools/
 if (!$res && file_exists(__DIR__ . '/../../main.inc.php')) $res = (include __DIR__ . '/../../main.inc.php');
 if (!$res && file_exists(__DIR__ . '/../main.inc.php'))   $res = (include __DIR__ . '/../main.inc.php');
 // Try using web root hints
@@ -81,58 +81,58 @@ function mc_conf($key, $default = '') {
 }
 
 // Colors and tokens (override via conf constants if present)
-$primary = mc_conf('MOKOCRM_PRIMARY_COLOR', '#0d6efd'); // Bootstrap-like blue
-$accent  = mc_conf('MOKOCRM_ACCENT_COLOR',  '#dc3545'); // Bootstrap-like red
-$neutral = mc_conf('MOKOCRM_NEUTRAL_COLOR', '#6c757d'); // Bootstrap-like gray
-$radius  = mc_conf('MOKOCRM_RADIUS', '12px');
+$primary = mc_conf('MOKODOLITOOLS_PRIMARY_COLOR', '#0d6efd'); // Bootstrap-like blue
+$accent  = mc_conf('MOKODOLITOOLS_ACCENT_COLOR',  '#dc3545'); // Bootstrap-like red
+$neutral = mc_conf('MOKODOLITOOLS_NEUTRAL_COLOR', '#6c757d'); // Bootstrap-like gray
+$radius  = mc_conf('MOKODOLITOOLS_RADIUS', '12px');
 
-$helplink_enabled = (int) mc_conf('MOKOCRM_HELPLINK', '1'); // 1=show, 0=hide
+$helplink_enabled = (int) mc_conf('MOKODOLITOOLS_HELPLINK', '1'); // 1=show, 0=hide
 
-$logoUrl = (defined('DOL_URL_ROOT') ? DOL_URL_ROOT : '') . '/custom/mokocrm/img/logo.png';
+$logoUrl = (defined('DOL_URL_ROOT') ? DOL_URL_ROOT : '') . '/custom/mokodolitools/img/logo.png';
 
 // Build CSS content --------------------------------------------------------------------------------
 $css = <<<CSS
-/* MokoCRM dynamic CSS (v02.05.01) */
-:root {--mokocrm-primary: {$primary};--mokocrm-accent: {$accent};--mokocrm-neutral: {$neutral};--mokocrm-radius: {$radius};}
-@media (prefers-color-scheme: dark){:root{--mokocrm-neutral:#adb5bd;}}
+/* MokoDoliTools dynamic CSS (v02.05.02) */
+:root {--mokodolitools-primary: {$primary};--mokodolitools-accent: {$accent};--mokodolitools-neutral: {$neutral};--mokodolitools-radius: {$radius};}
+@media (prefers-color-scheme: dark){:root{--mokodolitools-neutral:#adb5bd;}}
 
 /* Basic utilities */
-.mokocrm-hidden{display:none!important}
-.mokocrm-visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
-.mokocrm-rounded{border-radius:var(--mokocrm-radius)}
+.mokodolitools-hidden{display:none!important}
+.mokodolitools-visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
+.mokodolitools-rounded{border-radius:var(--mokodolitools-radius)}
 
 /* Brand elements */
-.mokocrm-badge{display:inline-flex;align-items:center;gap:.35rem;font-weight:600;padding:.25rem .5rem;border-radius:999px;background:var(--mokocrm-primary);color:#fff}
-.mokocrm-badge::before{content:"";width:1rem;height:1rem;background:url('{$logoUrl}') no-repeat center/contain;display:inline-block;filter:drop-shadow(0 0 0 rgba(0,0,0,.1))}
+.mokodolitools-badge{display:inline-flex;align-items:center;gap:.35rem;font-weight:600;padding:.25rem .5rem;border-radius:999px;background:var(--mokodolitools-primary);color:#fff}
+.mokodolitools-badge::before{content:"";width:1rem;height:1rem;background:url('{$logoUrl}') no-repeat center/contain;display:inline-block;filter:drop-shadow(0 0 0 rgba(0,0,0,.1))}
 
 /* Buttons */
-.mokocrm-btn{appearance:none;border:none;cursor:pointer;padding:.5rem .875rem;border-radius:var(--mokocrm-radius);background:var(--mokocrm-primary);color:#fff;font-weight:600}
-.mokocrm-btn:hover{filter:brightness(1.05)}
-.mokocrm-btn:active{filter:brightness(.95)}
-.mokocrm-btn--accent{background:var(--mokocrm-accent)}
+.mokodolitools-btn{appearance:none;border:none;cursor:pointer;padding:.5rem .875rem;border-radius:var(--mokodolitools-radius);background:var(--mokodolitools-primary);color:#fff;font-weight:600}
+.mokodolitools-btn:hover{filter:brightness(1.05)}
+.mokodolitools-btn:active{filter:brightness(.95)}
+.mokodolitools-btn--accent{background:var(--mokodolitools-accent)}
 
 /* Cards / panels */
-.mokocrm-card{border:1px solid rgba(0,0,0,.08);border-radius:var(--mokocrm-radius);padding:1rem;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.04)}
-html.theme-dark .mokocrm-card,body.dark .mokocrm-card{background:#1d1f23;border-color:rgba(255,255,255,.08)}
+.mokodolitools-card{border:1px solid rgba(0,0,0,.08);border-radius:var(--mokodolitools-radius);padding:1rem;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+html.theme-dark .mokodolitools-card,body.dark .mokodolitools-card{background:#1d1f23;border-color:rgba(255,255,255,.08)}
 
 /* Admin Tools grid (for admin/tools.php) */
-.mokocrm-tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;align-items:stretch}
-.mokocrm-tools-grid .tool{padding:1rem;border-radius:var(--mokocrm-radius);border:1px dashed rgba(0,0,0,.15);background:rgba(13,110,253,.03)}
-.mokocrm-tools-grid .tool h3{margin:.25rem 0 .5rem;font-size:1.05rem}
-.mokocrm-tools-grid .tool p{margin:0;color:var(--mokocrm-neutral)}
+.mokodolitools-tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;align-items:stretch}
+.mokodolitools-tools-grid .tool{padding:1rem;border-radius:var(--mokodolitools-radius);border:1px dashed rgba(0,0,0,.15);background:rgba(13,110,253,.03)}
+.mokodolitools-tools-grid .tool h3{margin:.25rem 0 .5rem;font-size:1.05rem}
+.mokodolitools-tools-grid .tool p{margin:0;color:var(--mokodolitools-neutral)}
 
 /* About header */
-.mokocrm-about-header{display:flex;align-items:center;gap:.75rem;margin-bottom:1rem}
-.mokocrm-about-logo{width:42px;height:42px;background:url('{$logoUrl}') no-repeat center/contain;border-radius:10px}
-.mokocrm-about-title{font-weight:700}
+.mokodolitools-about-header{display:flex;align-items:center;gap:.75rem;margin-bottom:1rem}
+.mokodolitools-about-logo{width:42px;height:42px;background:url('{$logoUrl}') no-repeat center/contain;border-radius:10px}
+.mokodolitools-about-title{font-weight:700}
 
 /* Modal-friendly links */
-.mokocrm-modal-link{text-decoration:underline;cursor:pointer}
+.mokodolitools-modal-link{text-decoration:underline;cursor:pointer}
 CSS;
 
-// Inline help-link visibility (controlled by MOKOCRM_HELPLINK)
-$css .= ".mokocrm-helplink{display:" . ($helplink_enabled ? 'inline-flex' : 'none') . ";align-items:center;gap:.35rem}\n";
-$css .= ".mokocrm-helplink a{color:var(--mokocrm-primary);text-decoration:underline dotted}\n";
+// Inline help-link visibility (controlled by MOKODOLITOOLS_HELPLINK)
+$css .= ".mokodolitools-helplink{display:" . ($helplink_enabled ? 'inline-flex' : 'none') . ";align-items:center;gap:.35rem}\n";
+$css .= ".mokodolitools-helplink a{color:var(--mokodolitools-primary);text-decoration:underline dotted}\n";
 
 // --- User-supplied icon tweaks and print modal ----------------------------------------------------
 $css .= <<<CSS

@@ -18,9 +18,9 @@
  */
 
 /**
- * \file    mokocrm/admin/dbadmin.php
- * \ingroup mokocrm
- * \brief   DBAdmin page of module MokoCRM.
+ * \file    mokodolitools/admin/dbadmin.php
+ * \ingroup mokodolitools
+ * \brief   DBAdmin page of module MokoDoliTools.
  */
 
 // Load Dolibarr environment
@@ -58,7 +58,7 @@ if (!$res) {
 // Libraries
 require_once DOL_DOCUMENT_ROOT . '/core/lib/admin.lib.php';
 require_once DOL_DOCUMENT_ROOT . '/core/lib/functions2.lib.php';
-require_once '../lib/mokocrm.lib.php';
+require_once '../lib/mokodolitools.lib.php';
 
 /**
  * @var Conf $conf
@@ -69,7 +69,7 @@ require_once '../lib/mokocrm.lib.php';
  */
 
 // Translations
-$langs->loadLangs(["errors", "admin", "mokocrm@mokocrm"]);
+$langs->loadLangs(["errors", "admin", "mokodolitools@mokodolitools"]);
 
 // Access control
 if (!$user->admin) {
@@ -93,9 +93,9 @@ $backtopage = GETPOST('backtopage', 'alpha');
 $form = new Form($db);
 
 $help_url = '';
-$title = "MokoCRMSetup";
+$title = "MokoDoliToolsSetup";
 
-llxHeader('', $langs->trans($title), $help_url, '', 0, 0, '', '', '', 'mod-mokocrm page-admin_dbadmin');
+llxHeader('', $langs->trans($title), $help_url, '', 0, 0, '', '', '', 'mod-mokodolitools page-admin_dbadmin');
 
 // Subheader
 $linkback = '<a href="' . ($backtopage ? $backtopage : DOL_URL_ROOT . '/admin/modules.php?restore_lastsearch_values=1') . '">' . $langs->trans("BackToModuleList") . '</a>';
@@ -103,19 +103,19 @@ $linkback = '<a href="' . ($backtopage ? $backtopage : DOL_URL_ROOT . '/admin/mo
 print load_fiche_titre($langs->trans($title), $linkback, 'title_setup');
 
 // Configuration header
-$head = mokocrmAdminPrepareHead();
-print dol_get_fiche_head($head, 'dbadmin', $langs->trans($title), 0, 'mokocrm@mokocrm');
+$head = mokodolitoolsAdminPrepareHead();
+print dol_get_fiche_head($head, 'dbadmin', $langs->trans($title), 0, 'mokodolitools@mokodolitools');
 
 // Security check - Protection if external user
-$permissionToRead = $user->rights->mokocrm->dbadmin->access && $user->admin;
-if (isModEnabled('mokocrm') < 1 || !$permissionToRead) {
+$permissionToRead = $user->rights->mokodolitools->dbadmin->access && $user->admin;
+if (isModEnabled('mokodolitools') < 1 || !$permissionToRead) {
 	accessforbidden('', 0, 0);
 }
 print '
 <script>
 $(document).ready(function(){
 	$("<div title=\'!! ' .	$langs->trans("Warning") .' !!\'>' .
-	$langs->trans("MOKOCRM_DBADMIN_Warning") .
+	$langs->trans("MOKODOLITOOLS_DBADMIN_Warning") .
 	'</div>").dialog({
 		modal: true,
 		buttons: {
@@ -128,7 +128,7 @@ $(document).ready(function(){
 	});
 });
 </script>';
-dol_include_once('/mokocrm/core/modules/modMokoCRM.class.php');
+dol_include_once('/mokodolitools/core/modules/modMokoDoliTools.class.php');
 
 print '<div><iframe src="iframe.php" width="100%" height="100%" frameborder="0" style="display: block; height: 90vh; margin: 0; padding: 0; border: 0 none; box-sizing: border-box;"></iframe>';
 
