@@ -20,7 +20,7 @@
 # DEFGROUP: Dolibarr
 # INGROUP: MokoDoliTools
 # FILE: mokodolitools.lang
-# VERSION: 2.5.1
+# VERSION: 02.05.02
 # BRIEF: English (en_US) language strings for the MokoDoliTools module (Dolibarr).
 # PATH: htdocs/custom/mokodolitools/langs/en_US/mokodolitools.lang
 # =========================================================================
@@ -31,7 +31,7 @@ CHARSET=UTF-8
 MOKODOLITOOLS=MokoDoliTools
 MOKODOLITOOLS_ModuleName=MokoDoliTools
 MOKODOLITOOLS_ModuleDesc=Core module providing MokoDoliTools UI, configuration pages, tools, and helpers.
-MOKODOLITOOLS_ModuleLongDesc=MokoDoliTools extends Dolibarr with curated defaults, a lightweight UI layer, and an admin toolkit. It adds Setup, Tools (Secure & Repair, Health Checks, Environment Info), and DBAdmin pages; supports entity-aware visibility (e.g., hide Mailing/Website while active); ships with en_US only; and emphasizes safe-by-default operations for multi-entity deployments.
+MOKODOLITOOLS_ModuleLongDesc=MokoDoliTools extends Dolibarr with curated defaults, a lightweight UI layer, and an admin toolkit. It adds Setup, Tools (Secure & Repair, Health Checks, Environment Info), and DBAdmin pages; supports entity-aware visibility; ships with en_US only; and emphasizes safe-by-default operations for multi-entity deployments.
 MOKODOLITOOLS_Area=MokoDoliTools
 MOKODOLITOOLS_Menu=MokoDoliTools
 
