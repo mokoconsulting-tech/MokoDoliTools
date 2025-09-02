@@ -18,11 +18,11 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see https://www.gnu.org/licenses/ .
 ========================================================================
 FILE INFORMATION
-INGROUP: MokoCRM
-FILE: lib/mokocrm.lib.php
-VERSION: 02.05.01
-BRIEF: Library with common functions for MokoCRM (admin header tabs).
-PATH: htdocs/custom/mokocrm/lib/mokocrm.lib.php
+INGROUP: MokoDoliTools
+FILE: lib/mokodolitools.lib.php
+VERSION: 02.05.02
+BRIEF: Library with common functions for MokoDoliTools (admin header tabs).
+PATH: htdocs/custom/mokodolitools/lib/mokodolitools.lib.php
 NOTE:
 VARIABLES:
 ========================================================================
@@ -33,42 +33,42 @@ VARIABLES:
  *
  * @return array<int, array{0:string,1:string,2:string}>
  */
-function mokocrmAdminPrepareHead()
+function mokodolitoolsAdminPrepareHead()
 {
 	global $langs, $conf;
 
-	$langs->load('mokocrm@mokocrm');
+	$langs->load('mokodolitools@mokodolitools');
 
 	$h = 0;
 	$head = array();
 
 	// Settings
-	$head[$h][0] = dol_buildpath('/mokocrm/admin/setup.php', 1);
-	$head[$h][1] = $langs->trans('MOKOCRM_Settings');
+	$head[$h][0] = dol_buildpath('/mokodolitools/admin/setup.php', 1);
+	$head[$h][1] = $langs->trans('MOKODOLITOOLS_Settings');
 	$head[$h][2] = 'settings';
 	$h++;
 
 	// Tools (Secure & Repair utilities live here)
-	$head[$h][0] = dol_buildpath('/mokocrm/admin/tools.php', 1);
-	$head[$h][1] = $langs->trans('MOKOCRM_Tools');
+	$head[$h][0] = dol_buildpath('/mokodolitools/admin/tools.php', 1);
+	$head[$h][1] = $langs->trans('MOKODOLITOOLS_Tools');
 	$head[$h][2] = 'tools';
 	$h++;
 
 	// DB Admin (Adminer wrapper)
-	$head[$h][0] = dol_buildpath('/mokocrm/admin/dbadmin.php', 1);
-	$head[$h][1] = $langs->trans('MOKOCRM_DBAdmin');
+	$head[$h][0] = dol_buildpath('/mokodolitools/admin/dbadmin.php', 1);
+	$head[$h][1] = $langs->trans('MOKODOLITOOLS_DBAdmin');
 	$head[$h][2] = 'dbadmin';
 	$h++;
 
 	// About (includes changelog)
-	$head[$h][0] = dol_buildpath('/mokocrm/admin/about.php', 1);
-	$head[$h][1] = $langs->trans('MOKOCRM_About');
+	$head[$h][0] = dol_buildpath('/mokodolitools/admin/about.php', 1);
+	$head[$h][1] = $langs->trans('MOKODOLITOOLS_About');
 	$head[$h][2] = 'about';
 	$h++;
 
 	// Extend with module-defined tabs
-	complete_head_from_modules($conf, $langs, null, $head, $h, 'mokocrm@mokocrm');
-	complete_head_from_modules($conf, $langs, null, $head, $h, 'mokocrm@mokocrm', 'remove');
+	complete_head_from_modules($conf, $langs, null, $head, $h, 'mokodolitools@mokodolitools');
+	complete_head_from_modules($conf, $langs, null, $head, $h, 'mokodolitools@mokodolitools', 'remove');
 
 	return $head;
 }
