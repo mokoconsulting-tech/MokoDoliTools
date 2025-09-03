@@ -20,7 +20,7 @@ along with this program. If not, see https://www.gnu.org/licenses/ .
 FILE INFORMATION
 INGROUP: MokoDoliTools
 FILE: helplink-rewriter.js.php
-VERSION: 02.05.02
+VERSION: 02.05.05
 BRIEF: Rewrites Dolibarr wiki links to a custom search URL, controlled by settings.
 PATH: htdocs/custom/mokodolitools/js/helplink-rewriter.js.php
 NOTE: Uses MOKODOLITOOLS_HELPLINK (enable) and MOKODOLITOOLS_HELPLINK_URL (base).

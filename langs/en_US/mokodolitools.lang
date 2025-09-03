@@ -20,240 +20,107 @@
 # DEFGROUP: Dolibarr
 # INGROUP: MokoDoliTools
 # FILE: mokodolitools.lang
-# VERSION: 02.05.02
-# BRIEF: English (en_US) language strings for the MokoDoliTools module (Dolibarr).
+# VERSION: 02.05.05
+# BRIEF: English (en_US) language strings for MokoDoliTools.
 # PATH: htdocs/custom/mokodolitools/langs/en_US/mokodolitools.lang
 # =========================================================================
 
 CHARSET=UTF-8
 
-# ===== Module Meta =====
-MOKODOLITOOLS=MokoDoliTools
-MOKODOLITOOLS_ModuleName=MokoDoliTools
-MOKODOLITOOLS_ModuleDesc=Core module providing MokoDoliTools UI, configuration pages, tools, and helpers.
-MOKODOLITOOLS_ModuleLongDesc=MokoDoliTools extends Dolibarr with curated defaults, a lightweight UI layer, and an admin toolkit. It adds Setup, Tools (Secure & Repair, Health Checks, Environment Info), and DBAdmin pages; supports entity-aware visibility; ships with en_US only; and emphasizes safe-by-default operations for multi-entity deployments.
-MOKODOLITOOLS_Area=MokoDoliTools
-MOKODOLITOOLS_Menu=MokoDoliTools
+# --- Module Meta ---
+ModuleMokoDoliToolsDesc=Admin tools module providing modal links, quick filter, accordion UI, and a Security Advisor.
 
-# ===== Menus =====
-MenuMokoDoliToolsDbadmin=Database Admin
-MenuMokoDoliToolsTools=Tools
-
-# ===== Admin / Setup =====
-MOKODOLITOOLS_Setup=Setup
-MOKODOLITOOLS_SetupTitle=Module Setup
-MOKODOLITOOLS_SetupDesc=Configure MokoDoliTools defaults and behavior.
-MOKODOLITOOLS_AdminSetup=Setup
-MOKODOLITOOLS_Setup_ResetDefaults=Reset to defaults
-MOKODOLITOOLS_Setup_SaveAndApply=Save and apply
-MOKODOLITOOLS_About=About
-MOKODOLITOOLS_AboutTitle=About MokoDoliTools
-MOKODOLITOOLS_Changelog=Changelog
-MOKODOLITOOLS_ChangelogTitle=Module Changelog
+# --- Admin / Setup ---
+MOKODOLITOOLS_Settings=Settings
 MOKODOLITOOLS_Tools=Tools
-MOKODOLITOOLS_ToolsTitle=Utilities & Tools
-MOKODOLITOOLS_DBAdmin=Database
-MOKODOLITOOLS_DBAdminTitle=Database Administration
+MOKODOLITOOLS_About=About
 
-# ===== Buttons / Common UI =====
-MOKODOLITOOLS_Save=Save
-MOKODOLITOOLS_Cancel=Cancel
-MOKODOLITOOLS_Back=Back
-MOKODOLITOOLS_Close=Close
-MOKODOLITOOLS_Run=Run
-MOKODOLITOOLS_Refresh=Refresh
-MOKODOLITOOLS_ClearCache=Clear Cache
-MOKODOLITOOLS_View=View
-MOKODOLITOOLS_Edit=Edit
-MOKODOLITOOLS_Delete=Delete
 
-# ===== Messages / Notifications =====
-MOKODOLITOOLS_SaveSuccess=Settings saved successfully.
-MOKODOLITOOLS_SaveError=Error while saving settings.
-MOKODOLITOOLS_ActionNotAllowed=You are not allowed to perform this action.
-MOKODOLITOOLS_NotAvailableInEntity=This feature is not available in the current entity.
-MOKODOLITOOLS_MasterEntityOnly=This feature is visible only in the master entity.
-MOKODOLITOOLS_OperationCompleted=Operation completed.
-MOKODOLITOOLS_OperationFailed=Operation failed.
+# ============================
+# MokoDoliTools — Tools page (en_US)
+# ============================
 
-# ===== Config =====
-MOKODOLITOOLS_Enable=Enable MokoDoliTools
-MOKODOLITOOLS_Disable=Disable MokoDoliTools
-MOKODOLITOOLS_HideOtherModules=Hide Other Modules When MokoDoliTools Is Active
-MOKODOLITOOLS_HideOtherModules_Help=When enabled, selected modules will be hidden while MokoDoliTools is active.
-MOKODOLITOOLS_HideModMailing=Hide Mailing Module When MokoDoliTools Is Active
-MOKODOLITOOLS_HideModWebsite=Hide Website Module When MokoDoliTools Is Active
-MOKODOLITOOLS_OnlyForEntity=Only Visible for Entity %s
-MOKODOLITOOLS_ConfigSection_General=General
-MOKODOLITOOLS_ConfigSection_Visibility=Visibility
-MOKODOLITOOLS_ConfigSection_Maintenance=Maintenance
+# --- Page / UI ---
+MOKODOLITOOLS_ToolsTitle=MokoDoliTools Tools
+MOKODOLITOOLS_LinksOpenInModal=Links on this page open in a modal window. Use ESC or the dialog close button to exit.
+MOKODOLITOOLS_FilterPlaceholder=Filter tools…
 
-# ===== Tools =====
-MOKODOLITOOLS_Tools_Desc=Run maintenance tasks, clear caches, and view environment information.
-MOKODOLITOOLS_Tools_LongDesc=Tools centralizes administrator utilities: cache management, health checks, environment details, and the Secure & Repair console for routine hardening and safe database housekeeping.
-MOKODOLITOOLS_Tools_ClearCacheDone=Caches cleared successfully.
-MOKODOLITOOLS_Tools_HealthChecks=Health Checks
-MOKODOLITOOLS_Tools_EnvInfo=Environment Information
-MOKODOLITOOLS_Tools_RunCheck=Run Check
-MOKODOLITOOLS_Tools_CheckPassed=Check Passed
-MOKODOLITOOLS_Tools_CheckFailed=Check Failed
-# — Tools page titles & helpers —
-MOKODOLITOOLS_HelpfulToolsTitle=Helpful Tools
-MOKODOLITOOLS_SecurityToolsTitle=Security Tools
-MOKODOLITOOLS_ImprovementsTitle=Improvements
-MOKODOLITOOLS_Repair_TestTitle=Test
-MOKODOLITOOLS_Repair_RunTitle=Run
-MOKODOLITOOLS_RunLockedNote=Some actions are locked for safety; enable only if you understand the risks.
-MOKODOLITOOLS_LinksOpenInModal=Links open in a modal window.
-MOKODOLITOOLS_FilterPlaceholder=Filter…
+# --- Security Advisor (section + actions/messages) ---
+MOKODOLITOOLS_Sec_Title=Security advisor
+MOKODOLITOOLS_Sec_ConfigPerms=conf.php permissions
+MOKODOLITOOLS_Sec_OK=OK
+MOKODOLITOOLS_Sec_Bad=Not secure (current: %s)
+MOKODOLITOOLS_Sec_FixPerms=Fix permissions
+MOKODOLITOOLS_Sec_LockStatus=Installer lock
+MOKODOLITOOLS_Sec_LockPresent=Present
+MOKODOLITOOLS_Sec_LockMissing=Missing
+MOKODOLITOOLS_Sec_CreateLock=Create lock
+MOKODOLITOOLS_Sec_RemoveLock=Remove lock
+MOKODOLITOOLS_Sec_Environment=Environment
+MOKODOLITOOLS_Env_Development=Development
+MOKODOLITOOLS_Env_Production=Production
+MOKODOLITOOLS_Sec_SetProd=Set Production
+MOKODOLITOOLS_Sec_SetDev=Set Development
+MOKODOLITOOLS_Sec_FixedConfPerms=Configuration file permissions updated.
+MOKODOLITOOLS_Sec_FixConfPermsFailed=Could not update configuration file permissions: %s
+MOKODOLITOOLS_Sec_ConfNotFound=Configuration file not found.
+MOKODOLITOOLS_Sec_LockCreated=Installer lock file created.
+MOKODOLITOOLS_Sec_LockCreateFailed=Could not create installer lock file.
+MOKODOLITOOLS_Sec_LockRemoved=Installer lock file removed.
+MOKODOLITOOLS_Sec_LockRemoveFailed=Could not remove installer lock file.
+MOKODOLITOOLS_Sec_EnvUpdated=Environment updated.
+MOKODOLITOOLS_Sec_EnvUpdateFailed=Could not update environment.
 
-# — Individual tool labels —
-MOKODOLITOOLS_Tool_PHPInfo=PHP Info
+# --- Repair (titles) ---
+MOKODOLITOOLS_Repair_TestTitle=Test actions
+MOKODOLITOOLS_Repair_RunTitle=Run actions
+
+# --- Repair (items) ---
+MOKODOLITOOLS_Repair_Standard=Standard checks
+MOKODOLITOOLS_Repair_CleanLinkedElements=Clean linked elements
+MOKODOLITOOLS_Repair_RestoreThirdPartyLogos=Restore third party logos
+MOKODOLITOOLS_Repair_CleanMenus=Clean menus
+MOKODOLITOOLS_Repair_CleanOrphanDirectories=Clean orphan directories
+MOKODOLITOOLS_Repair_CleanProductStockBatch=Clean product stock batch
+MOKODOLITOOLS_Repair_SetEmptyTimeSpentAmount=Set empty time spent amount
+MOKODOLITOOLS_Repair_RebuildProductThumbs=Rebuild product thumbnails
+MOKODOLITOOLS_Repair_ForceDisableModulesNotFound=Force disable modules not found
+MOKODOLITOOLS_Repair_CleanPermsTable=Clean permissions table
+MOKODOLITOOLS_Repair_ForceUTF8OnTables=Force UTF-8 on tables
+
+# --- Helpful Tools ---
+MOKODOLITOOLS_HelpfulToolsTitle=Helpful tools
+MOKODOLITOOLS_Tool_PHPInfo=PHP info
 MOKODOLITOOLS_Tool_Environment=Environment
 MOKODOLITOOLS_Tool_AboutDolibarr=About Dolibarr
-MOKODOLITOOLS_Tool_DatabaseTools=Database Tools
-MOKODOLITOOLS_Tool_DBTools=DB Tools
-MOKODOLITOOLS_Tool_AuditSecurity=Audit Security
-MOKODOLITOOLS_Tool_SecurityConfig=Security Config
-MOKODOLITOOLS_Tool_InstallChecker=Install Checker
-MOKODOLITOOLS_Tool_ManageUsers=Manage Users
-MOKODOLITOOLS_Tool_ManageGroups=Manage Groups
-MOKODOLITOOLS_Tool_RebuildThumbs=Rebuild Thumbnails
-MOKODOLITOOLS_Tool_ForceUTF8=Force UTF-8
-MOKODOLITOOLS_Tool_SecureRepair=Secure & Repair
-MOKODOLITOOLS_Tool_PurgeCache=Purge Cache
-MOKODOLITOOLS_Tool_PurgeLogs=Purge Logs
-MOKODOLITOOLS_Tools_Summary=Checks: %s passed, %s failed, %s skipped
-MOKODOLITOOLS_Tools_NoChecks=No checks were run.
-MOKODOLITOOLS_Tools_ViewLog=View log
-MOKODOLITOOLS_Tools_DownloadReport=Download report
-MOKODOLITOOLS_Tools_CopyDiagnostics=Copy diagnostics
-MOKODOLITOOLS_Tools_ExportDiagnostics=Export diagnostics
-MOKODOLITOOLS_Env_DolibarrVersion=Dolibarr version
-MOKODOLITOOLS_Env_PHPVersion=PHP version
-MOKODOLITOOLS_Env_DatabaseServer=Database server
-MOKODOLITOOLS_Env_DatabaseName=Database name
-MOKODOLITOOLS_Env_WebServer=Web server
-MOKODOLITOOLS_Env_OS=Operating system
-MOKODOLITOOLS_Env_MemoryLimit=Memory limit
-MOKODOLITOOLS_Env_MaxExecutionTime=Max execution time
-MOKODOLITOOLS_Env_UploadMaxFilesize=Upload max filesize
-MOKODOLITOOLS_Env_PostMaxSize=Post max size
-MOKODOLITOOLS_Env_Timezone=Timezone
-MOKODOLITOOLS_Env_ActiveModules=Active modules
-MOKODOLITOOLS_Env_ActiveTheme=Active theme
-MOKODOLITOOLS_Env_CurrentEntity=Current entity
-MOKODOLITOOLS_Env_CurrentUser=Current user
-MOKODOLITOOLS_Env_Company=Company
 
-# ===== Secure & Repair (Tools Area) =====
-MOKODOLITOOLS_Tools_SecureRepair=Secure & Repair
-MOKODOLITOOLS_Tools_SecureRepair_Desc=Run security hardening and safe repair operations. Back up your data first.
-MOKODOLITOOLS_Tools_SecureRepair_LongDesc=Secure & Repair consolidates safety-first actions with optional dry-run: permission normalization, core-file verification, token resets, .htaccess rebuild, session/temp purges, maintenance mode toggles, and database integrity checks, repairs, and index rebuilds.
-MOKODOLITOOLS_SR_SecurityChecks=Security Checks
-MOKODOLITOOLS_SR_Repairs=Repairs
-MOKODOLITOOLS_SR_RunAll=Run All
-MOKODOLITOOLS_SR_RunSelected=Run Selected
-MOKODOLITOOLS_SR_DryRun=Dry Run (No Changes)
-MOKODOLITOOLS_SR_DryRunOn=Dry run enabled; no changes were made.
-MOKODOLITOOLS_SR_DryRunOff=Dry run disabled.
-MOKODOLITOOLS_SR_AreYouSure=Are you sure? Back up before continuing.
-MOKODOLITOOLS_SR_Log=Action Log
-MOKODOLITOOLS_SR_NothingToDo=Nothing to do.
-MOKODOLITOOLS_SR_NeedsAdmin=Admin permissions required.
-MOKODOLITOOLS_SR_Done=%s completed.
-# — Security tasks —
-MOKODOLITOOLS_SR_FilePerms=Check File Permissions
-MOKODOLITOOLS_SR_FilePermsDesc=Scan for writable or unsafe files and folders.
-MOKODOLITOOLS_SR_FixPerms=Fix File Permissions
-MOKODOLITOOLS_SR_FixPermsDone=File permissions normalized.
-MOKODOLITOOLS_SR_CheckCore=Verify Core Files
-MOKODOLITOOLS_SR_CheckCoreDone=Core files verified.
-MOKODOLITOOLS_SR_CheckCoreFailed=Core file verification failed.
-MOKODOLITOOLS_SR_ResetTokens=Reset Security Tokens
-MOKODOLITOOLS_SR_ResetTokensDone=Security tokens reset.
-MOKODOLITOOLS_SR_HTAccess=Rebuild .htaccess
-MOKODOLITOOLS_SR_HTAccessDone=.htaccess rebuilt.
-MOKODOLITOOLS_SR_SessionPurge=Purge Sessions and Temp Files
-MOKODOLITOOLS_SR_SessionPurgeDone=Sessions and temp files purged.
-MOKODOLITOOLS_SR_Maintenance=Enable Maintenance Mode
-MOKODOLITOOLS_SR_MaintenanceOff=Disable Maintenance Mode
-MOKODOLITOOLS_SR_MaintenanceOnDone=Maintenance mode enabled.
-MOKODOLITOOLS_SR_MaintenanceOffDone=Maintenance mode disabled.
-# — Database tasks —
-MOKODOLITOOLS_SR_DBIntegrity=Database Integrity Check
-MOKODOLITOOLS_SR_DBIntegrityDone=Database integrity check completed.
-MOKODOLITOOLS_SR_DBRepair=Repair Database Tables
-MOKODOLITOOLS_SR_DBRepairDone=Repair completed.
-MOKODOLITOOLS_SR_RebuildIndexes=Rebuild Indexes
-MOKODOLITOOLS_SR_RebuildIndexesDone=Indexes rebuilt.
-MOKODOLITOOLS_SR_PrereqFailed=Prerequisites failed; cannot continue.
-MOKODOLITOOLS_SR_BackupRecommended=Backup is strongly recommended.
-MOKODOLITOOLS_SR_CreateBackup=Create backup
-MOKODOLITOOLS_SR_ShowDetails=Show details
-MOKODOLITOOLS_SR_HideDetails=Hide details
-MOKODOLITOOLS_SR_Warnings=%s warning(s)
-MOKODOLITOOLS_SR_Errors=%s error(s)
-MOKODOLITOOLS_SR_Skipped=%s skipped
+# --- Security Tools ---
+MOKODOLITOOLS_SecurityToolsTitle=Security tools
+MOKODOLITOOLS_Tool_SecurityConfig=Security configuration
+MOKODOLITOOLS_Tool_AuditSecurity=Audit events
+MOKODOLITOOLS_Tool_InstallChecker=Installation checker
+MOKODOLITOOLS_Tool_PurgeCache=Purge cache/temp files
+MOKODOLITOOLS_Tool_PurgeLogs=Purge logs
+MOKODOLITOOLS_Tool_ManageUsers=Manage users
+MOKODOLITOOLS_Tool_ManageGroups=Manage groups
 
-# ===== DBAdmin =====
-MOKODOLITOOLS_DBAdmin_Desc=Inspect tables and run safe maintenance operations. Proceed with caution and back up your data first.
-MOKODOLITOOLS_DBAdmin_ListTables=List Tables
-MOKODOLITOOLS_DBAdmin_Repair=Repair
-MOKODOLITOOLS_DBAdmin_Optimize=Optimize
-MOKODOLITOOLS_DBAdmin_Table=%s table
-MOKODOLITOOLS_DBAdmin_ActionDone=%s done.
-MOKODOLITOOLS_DBAdminHelp=Adminer is embedded below. Connection parameters are kept out of the URL.
-MOKODOLITOOLS_DBAdmin_LongDesc=Database-focused tools for safe inspection and maintenance operations.
-MOKODOLITOOLS_DBAdmin_Analyze=Analyze
-MOKODOLITOOLS_DBAdmin_Check=Check
-MOKODOLITOOLS_DBAdmin_Checksum=Checksum
-MOKODOLITOOLS_DBAdmin_RowCount=Row count
-MOKODOLITOOLS_DBAdmin_SizeOnDisk=Size on disk
-MOKODOLITOOLS_DBAdmin_Confirm=Are you sure? Back up before continuing.
-MOKODOLITOOLS_DBAdmin_UnsupportedDriver=This driver is not supported for this operation.
-MOKODOLITOOLS_DBADMIN_Warning=This tool makes direct edits to the database.<br><br>CHANGES ARE NOT REVERSIBLE!
+# --- Improvements ---
+MOKODOLITOOLS_ImprovementsTitle=Improvements
+MOKODOLITOOLS_Tool_RebuildThumbs=Rebuild product thumbnails
+MOKODOLITOOLS_Tool_ForceUTF8=Force UTF-8 on tables
 
-# ===== About =====
-MOKODOLITOOLS_About_Version=Version
-MOKODOLITOOLS_About_Author=Author
-MOKODOLITOOLS_About_Project=Project
-MOKODOLITOOLS_About_License=License
-MOKODOLITOOLS_About_Description=MokoDoliTools extends Dolibarr with opinionated defaults and helper tools.
+# --- Help Link settings ---
+HelpLinkEnabled=Enable help link
+HelpLinkURL=Help link URL
+IfEnabledAHelpLinkWillShow=If enabled, a help link will show on this page.
+BaseURLForHelpSearch=Base URL for help search
 
-# ===== Changelog =====
-MOKODOLITOOLS_Changelog_Intro=Recent changes to MokoDoliTools.
+# --- Permissions ---
+RightMokoDoliToolsToolsAccess=Access Tools page
 
-# ===== Permissions =====
-MOKODOLITOOLS_Perm_Read=Read MokoDoliTools Data
-MOKODOLITOOLS_Perm_Write=Create/Modify MokoDoliTools Data
-MOKODOLITOOLS_Perm_Delete=Delete MokoDoliTools Data
-MOKODOLITOOLS_Perm_Admin=Administer MokoDoliTools Settings
+# --- Module Meta ---
+ModuleMokoDoliToolsDesc=Admin tools module providing modal links, quick filter, accordion UI, and a Security Advisor.
 
-# ===== Assets =====
-MOKODOLITOOLS_LogoAlt=MokoDoliTools Logo
-
-# ===== Hidden-Modules Messaging =====
-MOKODOLITOOLS_HidingModules=Hiding modules: %s
-MOKODOLITOOLS_ModMailingHidden=Mailing module hidden.
-MOKODOLITOOLS_ModWebsiteHidden=Website module hidden.
-MOKODOLITOOLS_ModulesRestored=Previously hidden modules restored.
-MOKODOLITOOLS_NoModulesToHide=No modules to hide.
-MOKODOLITOOLS_ModulesAlreadyHidden=Selected modules are already hidden.
-
-# ===== Misc =====
-MOKODOLITOOLS_ComingSoon=Coming Soon
-MOKODOLITOOLS_UnderConstruction=Under Construction
-MOKODOLITOOLS_LearnMore=Learn More
-MOKODOLITOOLS_Copy=Copy
-MOKODOLITOOLS_Copied=Copied
-MOKODOLITOOLS_Download=Download
-MOKODOLITOOLS_Search=Search
-MOKODOLITOOLS_Status=Status
-MOKODOLITOOLS_Duration=Duration
-MOKODOLITOOLS_Elapsed=Elapsed
-MOKODOLITOOLS_Details=Details
-MOKODOLITOOLS_About_LongDesc=This page summarizes the purpose of the MokoDoliTools module, licensing, authorship, and project links.
-MOKODOLITOOLS_Changelog_Desc=View recent version history and changes.
-MOKODOLITOOLS_Settings=Settings
-IUnderstand=I Understand
+# --- Admin / Setup (extra) ---
+MokoDoliToolsSetup=Setup
+MokoDoliToolsSetupPage=Module Setup

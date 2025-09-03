@@ -20,7 +20,7 @@ along with this program. If not, see https://www.gnu.org/licenses/ .
 FILE INFORMATION
 INGROUP: MokoDoliTools
 FILE: mokodolitools.css.php
-VERSION: 02.05.02
+VERSION: 02.05.05
 BRIEF: Dynamic CSS for MokoDoliTools UI tokens, utilities, icons, and admin tooling views
 PATH: htdocs/custom/mokodolitools/mokodolitools.css.php
 NOTE: Serves CSS with cache headers; colors can be overridden via Dolibarr conf constants
@@ -92,7 +92,7 @@ $logoUrl = (defined('DOL_URL_ROOT') ? DOL_URL_ROOT : '') . '/custom/mokodolitool
 
 // Build CSS content --------------------------------------------------------------------------------
 $css = <<<CSS
-/* MokoDoliTools dynamic CSS (v02.05.02) */
+/* MokoDoliTools dynamic CSS (v02.05.05) */
 :root {--mokodolitools-primary: {$primary};--mokodolitools-accent: {$accent};--mokodolitools-neutral: {$neutral};--mokodolitools-radius: {$radius};}
 @media (prefers-color-scheme: dark){:root{--mokodolitools-neutral:#adb5bd;}}
 
