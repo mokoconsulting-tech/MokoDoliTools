@@ -20,7 +20,7 @@ along with this program. If not, see https://www.gnu.org/licenses/ .
 FILE INFORMATION
 INGROUP: MokoDoliTools
 FILE: mokodolitools/admin/setup.php
-VERSION: 02.05.02
+VERSION: 02.05.05
 BRIEF: Setup page for the MokoDoliTools module (help link settings only; URL hidden unless enabled).
 PATH: htdocs/custom/mokodolitools/admin/setup.php
 NOTE: GeoIP settings are intentionally not loaded or shown here; managed elsewhere.

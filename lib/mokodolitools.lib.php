@@ -20,7 +20,7 @@ along with this program. If not, see https://www.gnu.org/licenses/ .
 FILE INFORMATION
 INGROUP: MokoDoliTools
 FILE: lib/mokodolitools.lib.php
-VERSION: 02.05.02
+VERSION: 02.05.05
 BRIEF: Library with common functions for MokoDoliTools (admin header tabs).
 PATH: htdocs/custom/mokodolitools/lib/mokodolitools.lib.php
 NOTE:
@@ -52,12 +52,6 @@ function mokodolitoolsAdminPrepareHead()
 	$head[$h][0] = dol_buildpath('/mokodolitools/admin/tools.php', 1);
 	$head[$h][1] = $langs->trans('MOKODOLITOOLS_Tools');
 	$head[$h][2] = 'tools';
-	$h++;
-
-	// DB Admin (Adminer wrapper)
-	$head[$h][0] = dol_buildpath('/mokodolitools/admin/dbadmin.php', 1);
-	$head[$h][1] = $langs->trans('MOKODOLITOOLS_DBAdmin');
-	$head[$h][2] = 'dbadmin';
 	$h++;
 
 	// About (includes changelog)

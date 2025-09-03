@@ -23,7 +23,7 @@ FILE INFORMATION
  DEFGROUP:   Dolibarr
  INGROUP:    MokoDoliTools
  FILE:       core/modules/modMokoDoliTools.class.php
- VERSION:    02.05.02
+ VERSION:    02.05.05
  BRIEF:      Module descriptor for the MokoDoliTools Dolibarr module
  PATH:       htdocs/custom/mokodolitools/core/modules/modMokoDoliTools.class.php
  VARIABLES:
@@ -92,7 +92,7 @@ class modMokoDoliTools extends DolibarrModules
 		$this->editor_squarred_logo = 'logo.png@mokodolitools'; // img/logo.png in module
 
 		// --- Version & state -----------------------------------------------
-		$this->version    = '02.05.02';
+		$this->version    = '02.05.05';
 		$this->const_name = 'MAIN_MODULE_' . strtoupper($this->name);  // e.g., MAIN_MODULE_MOKODOLITOOLS
 
 		// --- Visual identity -----------------------------------------------
@@ -162,69 +162,26 @@ class modMokoDoliTools extends DolibarrModules
 		$this->cronjobs     = array();
 
 		// --- Permissions ----------------------------------------------------
-		// Row shape: [0] id, [1] label(lang key), [2] unused, [3] grant to admin, [4] family, [5] action
+		// [0]=id, [1]=label(lang key), [2]=unused, [3]=grant to admin (1=yes), [4]=perm(family), [5]=subperm(action)
 		$this->rights = array();
+		$this->rights_class = 'mokodolitools';
 
-		// Start rights index at 0
+		$base = $this->numero * 101;
 		$r = 0;
 
-		// Base id block for rights (Dolibarr convention: module_id * 100)
-		$base = ($this->numero * 100);
-
-		// CONSOLIDATED: Tools access
-		$this->rights[$r][0] = $base + $r;
-		$this->rights[$r][1] = 'RightMokoDoliToolsToolsAccess';
+		// Tools / access  → id ...01
+		$this->rights[$r][0] = ($base++);
+		$this->rights[$r][1] = 'RightMokoDoliToolsToolsAccess'; // add this key in langs
 		$this->rights[$r][2] = null;
-		$this->rights[$r][3] = 1;
-		$this->rights[$r][4] = 'tools';
-		$this->rights[$r][5] = 'access';
-		$r++;
-
-		// Database Admin tool access
-		$this->rights[$r][0] = $base + $r;
-		$this->rights[$r][1] = 'RightMokoDoliToolsDbadminAccess';
-		$this->rights[$r][2] = null;
-		$this->rights[$r][3] = 1;
-		$this->rights[$r][4] = 'dbadmin';
-		$this->rights[$r][5] = 'access';
-		$r++;
+		$this->rights[$r][3] = 1;            // granted to admin by default
+		$this->rights[$r][4] = 'tools';      // family (perm)
+		$this->rights[$r][5] = 'access';     // action (subperm)
 
 		// --- Menus ----------------------------------------------------------
 		$this->menu = array();
 
 		$m = $this->numero;
 
-		// Admin Tools > Dbadmin
-		$this->menu[$m++] = array(
-			'fk_menu'   => 'fk_mainmenu=home,fk_leftmenu=admintools',
-			'type'      => 'left',
-			'titre'     => 'MenuMokoDoliToolsDbadmin',
-			'mainmenu'  => '',
-			'leftmenu'  => 'admintools',
-			'url'       => '/custom/mokodolitools/admin/dbadmin.php?mainmenu=home&amp;leftmenu=admintools',
-			'langs'     => 'mokodolitools@mokodolitools',
-			'position'  => 1000 + $m,
-			'enabled'   => '$conf->mokodolitools->enabled',
-			'perms'     => '$user->rights->mokodolitools->dbadmin->access',
-			'target'    => '',
-			'user'      => 0,
-		);
-
-		// Admin Tools > Tools
-		$this->menu[$m++] = array(
-			'fk_menu'   => 'fk_mainmenu=home,fk_leftmenu=admintools',
-			'type'      => 'left',
-			'titre'     => 'MenuMokoDoliToolsTools',
-			'mainmenu'  => '',
-			'leftmenu'  => 'admintools',
-			'url'       => '/custom/mokodolitools/admin/tools.php?mainmenu=home&amp;leftmenu=admintools',
-			'langs'     => 'mokodolitools@mokodolitools',
-			'position'  => 1000 + $m,
-			'enabled'   => '$conf->mokodolitools->enabled',
-			'perms'     => '$user->rights->mokodolitools->tools->access',
-			'target'    => '',
-			'user'      => 0,
-		);
 	}
 
 	/**

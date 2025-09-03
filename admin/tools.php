@@ -20,7 +20,7 @@ along with this program. If not, see https://www.gnu.org/licenses/ .
 FILE INFORMATION
 INGROUP: MokoDoliTools
 FILE: tools.php
-VERSION: 02.05.02
+VERSION: 02.05.05
 BRIEF: Admin tools for MokoDoliTools with modal links, quick filter, accordion UI, and a Security Advisor.
 PATH: htdocs/custom/mokodolitools/admin/tools.php
 NOTE: Disallowed tools are hidden when install.lock is present (unless upgrade.unlock exists). Uses MOKODOLITOOLS_* language keys throughout.
@@ -69,7 +69,10 @@ print load_fiche_titre($langs->trans($title), $linkback, 'title_setup');
 
 $head = mokodolitoolsAdminPrepareHead();
 print dol_get_fiche_head($head, 'tools', $langs->trans($title), -1);
-
+// Security check - Protection if external user
+if (!isModEnabled('mokodolitools') || empty($user->rights->mokodolitools->tools->access)) {
+	accessforbidden('', 0, 0);
+}
 // -----------------------------------------------------------------------------
 // Security helpers
 // -----------------------------------------------------------------------------

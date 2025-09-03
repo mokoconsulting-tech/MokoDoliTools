@@ -20,7 +20,7 @@ along with this program. If not, see https://www.gnu.org/licenses/ .
 FILE INFORMATION
 INGROUP:    MokoDoliTools
 FILE:       admin/about.php
-VERSION:    02.05.02
+VERSION:    02.05.05
 BRIEF:      About & Changelog page for the MokoDoliTools module.
 PATH:       htdocs/custom/mokodolitools/admin/about.php
 NOTE:       Finds ChangeLog.md case-insensitively in the module root and renders it as Markdown.

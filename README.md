@@ -19,14 +19,13 @@ along with this program. If not, see https://www.gnu.org/licenses/ .
 FILE INFORMATION
 INGROUP: MokoDoliTools
 FILE: README.md
-VERSION: 02.05.02
+VERSION: 02.05.05
 BRIEF: Readme and upgrade notes for the MokoDoliTools Dolibarr module
-PATH: htdocs/custom/mokodolitools/README.md
-NOTE: Updated to reflect project sync notes as of 2025-08-28.
+PATH: /README.md
 ========================================================================
 -->
 
-# MokoDoliTools — Dolibarr Module (v02.05.02) 🧩
+# MokoDoliTools — Dolibarr Module (v02.05.05) 🧩
 
 > Core utilities and conventions for the Moko‑prefixed module suite on Dolibarr.
 
@@ -39,7 +38,7 @@ MokoDoliTools is a module providing MokoDoliTools UI, configuration pages, tools
 ## Features ✨
 
 * 🧱 Standardized structure for all Moko modules
-* 🛠️ Unified admin pages (Setup, Tools with Secure & Repair, DB Admin, About)
+* 🛠️ Unified admin pages (Setup, Tools with Secure & Repair, About)
 * 🔒 Security hardening with blank index files in every folder
 * 👥 Cross‑entity controls (global constants at entity 0; UI visible only on entity 1)
 * ⚙️ Sensible defaults (disables Mailings/Websites/ModuleBuilder; toggleable Help Links)
